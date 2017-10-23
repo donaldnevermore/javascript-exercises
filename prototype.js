@@ -33,10 +33,11 @@ function Person(name, age, job) {
 }
 
 Person.prototype = {
-    constuctor: Person,
+    constructor: Person,
     sayName: function () {
         console.log(this.name);
     }
 }
 
 var p = new Person("Will", 22, "FrontEnd");
+p.sayName();
