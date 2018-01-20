@@ -10,25 +10,22 @@
 走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。
 */
 function bubbleSort(arr) {
-    var len = arr.length;
+  var len = arr.length;
 
-    for (var i = 0; i < len - 1; i++) {
-        var n = 0;
-        for (var j = 0; j < len - i; j++) {
-
-            if (arr[j] < arr[j - 1]) {
-                n++;
-                console.log(n);
-                var temp = arr[j];
-                arr[j] = arr[j - 1];
-                arr[j - 1] = temp;
-            }
-
-        }
-        if (n < 1) {
-
-            break;
-        }
+  for (var i = 0; i < len - 1; i++) {
+    var n = 0;
+    for (var j = 0; j < len - i; j++) {
+      if (arr[j] < arr[j - 1]) {
+        n++;
+        console.log(n);
+        var temp = arr[j];
+        arr[j] = arr[j - 1];
+        arr[j - 1] = temp;
+      }
     }
-    return arr;
+    if (n < 1) {
+      break;
+    }
+  }
+  return arr;
 }

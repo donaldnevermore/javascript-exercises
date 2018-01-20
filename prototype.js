@@ -26,18 +26,18 @@
 
 // 构造函数模式和原型模式组合使用
 function Person(name, age, job) {
-    this.name = name;
-    this.age = age;
-    this.job = job;
-    this.friends = ["Shelby", "Court"];
+  this.name = name;
+  this.age = age;
+  this.job = job;
+  this.friends = ['Shelby', 'Court'];
 }
 
 Person.prototype = {
-    constructor: Person,
-    sayName: function () {
-        console.log(this.name);
-    }
-}
+  constructor: Person,
+  sayName: function() {
+    console.log(this.name);
+  }
+};
 
-var p = new Person("Will", 22, "FrontEnd");
+var p = new Person('Will', 22, 'FrontEnd');
 p.sayName();
