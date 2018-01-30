@@ -38,6 +38,9 @@ Person.prototype = {
     console.log(this.name);
   }
 };
-
+// 另一种等价形式
+// Person.prototype.sayName = function () {
+// console.log(this.name);
+// }
 var p = new Person('Will', 22, 'FrontEnd');
 p.sayName();
