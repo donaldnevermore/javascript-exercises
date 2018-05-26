@@ -1,0 +1,18 @@
+{
+  "name": "javascript-exercises",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:William-Python-King/javascript-exercises.git",
+  "author": "william <1219782000@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "jest": "^22.0.4",
+    "ts-node": "^4.1.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
