@@ -1,4 +1,4 @@
-class Scorer {
+export class Scorer {
   constructor() {
     this.ball = 0;
     this.throws = [];
@@ -43,4 +43,3 @@ class Scorer {
     return this.throws[this.ball + 2];
   }
 }
-module.exports = Scorer;
