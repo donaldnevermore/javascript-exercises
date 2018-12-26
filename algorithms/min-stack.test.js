@@ -1,4 +1,4 @@
-import { MinStack } from './min-stack'
+const MinStack = require('./min-stack')
 
 test('有最小值的栈', () => {
   let stack = new MinStack()

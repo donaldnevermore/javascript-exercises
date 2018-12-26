@@ -1,8 +1,10 @@
-export class MinStack {
-  private data: number[] = []
-  private mins: number[] = []
+class MinStack {
+  constructor () {
+    this.data = []
+    this.mins = []
+  }
 
-  public push(num: number): void {
+  push (num) {
     this.data.push(num)
 
     if (this.mins.length === 0) {
@@ -15,7 +17,7 @@ export class MinStack {
     }
   }
 
-  public pop() {
+  pop () {
     if (this.data.length === 0) {
       throw new Error('空栈')
     }
@@ -30,7 +32,7 @@ export class MinStack {
     return this.data.pop()
   }
 
-  public getMin(): number {
+  getMin () {
     if (this.mins.length === 0) {
       throw new Error('空栈')
     }
@@ -40,3 +42,6 @@ export class MinStack {
     return this.data[minIndex]
   }
 }
+
+module.exports = MinStack
+

@@ -1,15 +1,15 @@
 class Frame {
-  constructor() {
-    this._score = 0;
+  constructor () {
+    this._score = 0
   }
 
-  get score() {
-    return this._score;
+  get score () {
+    return this._score
   }
 
-  add(pins) {
-    this._score += pins;
+  add (pins) {
+    this._score += pins
   }
 }
 
-module.exports = Frame;
+module.exports = Frame

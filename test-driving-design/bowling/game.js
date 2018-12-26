@@ -1,48 +1,57 @@
-const Scorer = require('./scorer');
+const Scorer = require('./scorer')
 
 class Game {
-  constructor() {
-    this.throws = [];
-    this.currentFrame = 0;
-    this.isFirstThrow = true;
-    this.scorer = new Scorer();
+  constructor () {
+    this.throws = []
+    this.currentFrame = 0
+    this.isFirstThrow = true
+    this.scorer = new Scorer()
   }
-  get score() {
-    return this.scoreForFrame(this.currentFrame);
+
+  get score () {
+    return this.scoreForFrame(this.currentFrame)
   }
-  add(pins) {
-    this.scorer.addThrow(pins);
-    this.adjustCurrentFrame(pins);
+
+  add (pins) {
+    this.scorer.addThrow(pins)
+    this.adjustCurrentFrame(pins)
   }
-  adjustCurrentFrame(pins) {
+
+  adjustCurrentFrame (pins) {
     if (this.lastBallInFrame(pins)) {
-      this.advanceFrame();
-      this.isFirstThrow = true;
+      this.advanceFrame()
+      this.isFirstThrow = true
     } else {
-      this.isFirstThrow = false;
+      this.isFirstThrow = false
     }
   }
-  lastBallInFrame(pins) {
-    return this.strike(pins) || !this.isFirstThrow;
+
+  lastBallInFrame (pins) {
+    return this.strike(pins) || !this.isFirstThrow
   }
-  strike(pins) {
-    return this.isFirstThrow && pins === 10;
+
+  strike (pins) {
+    return this.isFirstThrow && pins === 10
   }
-  adjustFrameForStrike(pins) {
+
+  adjustFrameForStrike (pins) {
     if (pins === 10) {
-      this.advanceFrame();
-      return true;
+      this.advanceFrame()
+      return true
     }
-    return false;
+    return false
   }
-  advanceFrame() {
-    this.currentFrame++;
+
+  advanceFrame () {
+    this.currentFrame++
     if (this.currentFrame > 10) {
-      this.currentFrame = 10;
+      this.currentFrame = 10
     }
   }
-  scoreForFrame(theFrame) {
-    return this.scorer.scoreForFrame(theFrame);
+
+  scoreForFrame (theFrame) {
+    return this.scorer.scoreForFrame(theFrame)
   }
 }
-module.exports = Game;
+
+module.exports = Game
