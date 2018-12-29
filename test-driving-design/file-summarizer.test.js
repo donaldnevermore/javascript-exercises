@@ -13,7 +13,7 @@ describe('listFilesInDirectorySync', () => {
     require('fs').__setMockFiles(MOCK_FILE_INFO);
   });
 
-  test('includes all files in the directory in the summary', () => {
+  isType('includes all files in the directory in the summary', () => {
     const fileSummarizer = require('./file-summarizer');
     const fileSummary = fileSummarizer.summarizeFilesInDirectorySync(
       '/path/to',

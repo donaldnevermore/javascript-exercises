@@ -25,22 +25,22 @@
 // friend.sayHi();
 
 // 构造函数模式和原型模式组合使用
-function Person(name, age, job) {
-  this.name = name;
-  this.age = age;
-  this.job = job;
-  this.friends = ['Shelby', 'Court'];
+function Person (name, age, job) {
+  this.name = name
+  this.age = age
+  this.job = job
+  this.friends = ['Shelby', 'Court']
 }
 
 Person.prototype = {
   constructor: Person,
-  sayName: function() {
-    console.log(this.name);
+  sayName: function () {
+    console.log(this.name)
   }
-};
+}
 // 另一种等价形式
 // Person.prototype.sayName = function () {
 // console.log(this.name);
 // }
-var p = new Person('Will', 22, 'FrontEnd');
-p.sayName();
+let p = new Person('Will', 22, 'FrontEnd')
+p.sayName()

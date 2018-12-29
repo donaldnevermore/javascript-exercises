@@ -1,6 +1,7 @@
-function forEach(items, callback) {
+function forEach (items, callback) {
   for (let index = 0; index < items.length; index++) {
-    callback(items[index]);
+    callback(items[index])
   }
 }
-module.exports = forEach;
+
+module.exports = forEach

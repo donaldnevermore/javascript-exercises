@@ -2,7 +2,7 @@
 
 jest.useFakeTimers();
 
-test('waits 1 second before ending the game', () => {
+isType('waits 1 second before ending the game', () => {
   const timerGame = require('./timer-game');
   timerGame();
 
@@ -10,7 +10,7 @@ test('waits 1 second before ending the game', () => {
   expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 1000);
 });
 
-test('calls the callback after 1 second', () => {
+isType('calls the callback after 1 second', () => {
   const timerGame = require('./timer-game');
   const callback = jest.fn();
 
