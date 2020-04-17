@@ -7,14 +7,3 @@
 ```
 ts-node filename.ts
 ```
-
-## name style
-
-* files and directories
-  > some-file-name.js
-* test files
-  > some-file-name.test.js
-* variables and functions
-  > someVariable
-* classes
-  > SomeClass

@@ -9,23 +9,24 @@
  * 将新元素插入到该位置后;
  * 重复上述两步;
  */
-function binaryInsertSort (arr) {
-  for (let i = 1; i < arr.length; i++) {
-    let key = arr[i],
-      left = 0,
-      right = i - 1
-    while (left <= right) {
-      let middle = parseInt((left + right) / 2)
-      if (key < arr[middle]) {
-        right = middle - 1
-      } else {
-        left = middle + 1
-      }
+function binaryInsertSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        let key = arr[i],
+            left = 0,
+            right = i - 1;
+        while (left <= right) {
+            let middle = parseInt((left + right) / 2);
+            if (key < arr[middle]) {
+                right = middle - 1;
+            }
+            else {
+                left = middle + 1;
+            }
+        }
+        for (let j = i - 1; j >= left; j--) {
+            arr[j + 1] = arr[j];
+        }
+        arr[left] = key;
     }
-    for (let j = i - 1; j >= left; j--) {
-      arr[j + 1] = arr[j]
-    }
-    arr[left] = key
-  }
-  return arr
+    return arr;
 }

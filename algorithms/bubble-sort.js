@@ -9,23 +9,23 @@
  * 它重复地走访过要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。
  * 走访数列的工作是重复地进行直到没有再需要交换，也就是说该数列已经排序完成。
  */
-function bubbleSort (arr) {
-  let len = arr.length
+function bubbleSort(arr) {
+    let len = arr.length;
 
-  for (let i = 0; i < len - 1; i++) {
-    let n = 0
-    for (let j = 0; j < len - i; j++) {
-      if (arr[j] < arr[j - 1]) {
-        n++
-        console.log(n)
-        let temp = arr[j]
-        arr[j] = arr[j - 1]
-        arr[j - 1] = temp
-      }
+    for (let i = 0; i < len - 1; i++) {
+        let n = 0;
+        for (let j = 0; j < len - i; j++) {
+            if (arr[j] < arr[j - 1]) {
+                n++;
+                console.log(n);
+                let temp = arr[j];
+                arr[j] = arr[j - 1];
+                arr[j - 1] = temp;
+            }
+        }
+        if (n < 1) {
+            break;
+        }
     }
-    if (n < 1) {
-      break
-    }
-  }
-  return arr
+    return arr;
 }

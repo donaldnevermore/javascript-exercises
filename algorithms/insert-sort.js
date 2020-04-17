@@ -12,16 +12,16 @@
  * 将新元素插入到该位置后;
  * 重复步骤;
  */
-function insertSort (arr) {
-  let len = arr.length
-  for (let i = 1; i < len; i++) {
-    let key = arr[i]
-    let j = i - 1
-    while (j >= 0 && arr[j] > key) {
-      arr[j + 1] = arr[j]
-      j--
+function insertSort(arr) {
+    let len = arr.length;
+    for (let i = 1; i < len; i++) {
+        let key = arr[i];
+        let j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = key;
     }
-    arr[j + 1] = key
-  }
-  return arr
+    return arr;
 }

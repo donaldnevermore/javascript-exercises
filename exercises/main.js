@@ -1,38 +1,34 @@
-'use strict'
+"use strict";
 // 引入hello模块
-const greet = require('./hello')
-let s = 'Michael'
-greet(s)
+const greet = require("./hello");
+let s = "Michael";
+greet(s);
 
 // 方法一：对module.exports赋值：
 
-function hello () {
-  console.log('Hello, world!')
+function hello2() {
+    console.log("Hello, world!");
 }
 
-function greet (name) {
-  console.log('Hello, ' + name + '!')
+function greet2(name) {
+    console.log("Hello, " + name + "!");
 }
 
 module.exports = {
-  hello: hello,
-  greet: greet
-}
+    hello: hello2,
+    greet: greet2
+};
 // 方法二： 直接使用exports：
 
 // hello.js
 
-function hello () {
-  console.log('Hello, world!')
+function hello3() {
+    console.log("Hello, world!");
 }
 
-function greet (name) {
-  console.log('Hello, ' + name + '!')
+function greet3(name) {
+    console.log("Hello, " + name + "!");
 }
 
-function hello () {
-  console.log('Hello, world!')
-}
-
-exports.hello = hello
-exports.greet = greet
+exports.hello = hello3;
+exports.greet = greet3;
