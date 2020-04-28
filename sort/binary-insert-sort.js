@@ -11,11 +11,11 @@
  */
 function binaryInsertSort(arr) {
     for (let i = 1; i < arr.length; i++) {
-        let key = arr[i],
-            left = 0,
-            right = i - 1;
+        const key = arr[i];
+        let left = 0;
+        let right = i - 1;
         while (left <= right) {
-            let middle = parseInt((left + right) / 2);
+            const middle = Number.parseInt(String((left + right) / 2));
             if (key < arr[middle]) {
                 right = middle - 1;
             }

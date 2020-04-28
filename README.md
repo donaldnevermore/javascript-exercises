@@ -1,9 +1,17 @@
-# javascript-exercises
+# Introduction
 
-> some javascript/typescript exercises and examples from books and other resources that helps me from noob to pro
+JavaScript exercises and examples from books and other resources that help me a lot
 
-## run typescript file
+# Install dependencies
+
+run
 
 ```
-ts-node filename.ts
+npm install
+```
+
+or
+
+```
+yarn
 ```

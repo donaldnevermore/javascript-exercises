@@ -1,21 +1,25 @@
 {
   "name": "javascript-exercises",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "JavaScript exercises and examples from books and other resources that helps me a lot",
   "main": "index.js",
-  "repository": "git@github.com:William-Python-King/javascript-exercises.git",
-  "author": "william <1219782000@qq.com>",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DongchengWang/javascript-exercises.git"
+  },
+  "author": "DongchengWang",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DongchengWang/javascript-exercises/issues"
+  },
+  "homepage": "https://github.com/DongchengWang/javascript-exercises#readme",
   "dependencies": {
-    "express": "^4.16.2"
+    "express": "^4.17.1"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.1",
-    "jest": "^23.5.0",
-    "ts-jest": "^23.1.4",
-    "ts-node": "^4.1.0",
-    "typescript": "^3.0.3"
-  },
-  "scripts": {
-    "test": "jest"
+    "jest": "^25.4.0"
   }
 }
