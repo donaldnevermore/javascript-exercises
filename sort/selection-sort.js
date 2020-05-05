@@ -10,17 +10,20 @@
  * 然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。
  * 以此类推，直到所有元素均排序完毕。
  */
-function selectSort(arr) {
-    for (let i = 0; i < arr.length - 1; i++) {
-        let minIndex = i;
-        for (let j = i + 1; j < arr.length; j++) {
-            if (arr[minIndex] > arr[j]) {
-                minIndex = j;
+function selectionSort(arr) {
+    const n = arr.length;
+
+    for (let i = 0; i < n; i++) {
+        let min = i;
+
+        for (let j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min]) {
+                min = j;
             }
         }
 
         const temp = arr[i];
-        arr[i] = arr[minIndex];
-        arr[minIndex] = temp;
+        arr[i] = arr[min];
+        arr[min] = temp;
     }
 }

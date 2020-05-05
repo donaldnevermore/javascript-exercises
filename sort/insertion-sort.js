@@ -12,10 +12,10 @@
  * 将新元素插入到该位置后;
  * 重复步骤;
  */
-function insertSort(arr) {
-    const len = arr.length;
+function insertionSort(arr) {
+    const n = arr.length;
 
-    for (let i = 1; i < len; i++) {
+    for (let i = 1; i < n; i++) {
         for (let j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
             const temp = arr[j];
             arr[j] = arr[j - 1];
