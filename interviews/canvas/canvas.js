@@ -1,14 +1,24 @@
 let drawing = document.getElementById("drawing");
 
 if (drawing.getContext) {
-    let context = drawing.getContext("2d");
+    const context = drawing.getContext("2d");
 
-    context.fillStyle = "#fff000";
-    context.fillRect(10, 10, 50, 50);
+    context.beginPath();
 
-    context.fillStyle = "rgba(0,0,255,0.5)";
-    context.fillRect(30, 30, 50, 50);
+    // 绘制外圆
+    context.arc(100, 100, 99, 0, 2 * Math.PI, false);
 
-    // 清除
-    context.clearRect(40, 40, 10, 10);
+    // 绘制内圆
+    context.moveTo(194, 100);
+    context.arc(100, 100, 94, 0, 2 * Math.PI, false);
+
+    // 绘制分针
+    context.moveTo(100, 100);
+    context.lineTo(100, 15);
+
+    // 绘制时针
+    context.moveTo(100, 100);
+    context.lineTo(35, 100);
+
+    context.stroke();
 }
