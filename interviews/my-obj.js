@@ -12,6 +12,6 @@ var myObj = {
     }
 };
 
-myObj.showThis(); // myObject 对象
+myObj.showThis(); // myObj 对象
 console.log(myObj.name); // 腾讯2
 console.log(globalThis.name); // undefined
