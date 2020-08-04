@@ -18,6 +18,7 @@ module.exports = {
     hello: hello2,
     greet: greet2
 };
+
 // 方法二： 直接使用exports：
 
 // hello.js
