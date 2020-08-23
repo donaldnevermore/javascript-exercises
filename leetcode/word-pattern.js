@@ -3,7 +3,7 @@
  * @param {string} str
  * @return {boolean}
  */
-function wordPattern(pattern, str) {
+const wordPattern = function(pattern, str) {
     let pat = pattern.split("");
     let words = str.split(" ");
 
@@ -11,7 +11,7 @@ function wordPattern(pattern, str) {
         return false;
     }
 
-    let dict = {};
+    const dict = {};
 
     for (let i = 0; i < pat.length; i++) {
         let key = pat[i];
@@ -23,13 +23,11 @@ function wordPattern(pattern, str) {
             let vals = Object.values(dict);
             let sets = new Set(vals);
             if (vals.length !== sets.size) {
-                // 值不一样
                 return false;
             }
         }
         else {
             if (dict[key] !== value) {
-                // 键不一样
                 return false;
             }
         }
