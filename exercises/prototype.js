@@ -37,6 +37,7 @@ Person2.prototype = {
         console.log(this.name);
     }
 };
+
 // 另一种等价形式
 // Person.prototype.sayName = function () {
 // console.log(this.name);

@@ -1,21 +1,9 @@
 # Introduction
 
-JavaScript exercises and examples from books and other resources that help me a lot.
+JavaScript exercises.
 
-## Install dependencies
+## Quick start
 
-First, make sure you have node installed, then run
-
-```
-npm install
-```
-
-or
-
-```
-yarn
-```
-
-## Files and directories naming
-
-Use `some-directories` and `some-files.js` style.
+1. make sure you have node.js LTS & yarn installed.
+2. run `yarn`.
+3. run `jest`.
