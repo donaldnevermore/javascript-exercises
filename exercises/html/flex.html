@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p {
+            width: 150px;
+            max-width: 250px;
+            border: medium double black;
+            background-color: lightgray;
+            margin: 2px;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        #first {
+            flex-grow: 3;
+        }
+
+        #second {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <p id="first">
+        first
+    </p>
+    <p id="second">
+        second
+    </p>
+    <p id="third">
+        third
+    </p>
+</div>
+</body>
+</html>
