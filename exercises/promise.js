@@ -4,8 +4,8 @@ const REJECTED = "REJECTED";
 
 class MyPromise {
     status = PENDING;
-    value = undefined;
-    reason = undefined;
+    value = null;
+    reason = null;
 
     // Resolves & rejects callback queues.
     resolves = [];
@@ -105,7 +105,113 @@ class MyPromise {
     }
 
     catch(errorFunc) {
-        this.then(null, errorFunc);
+        return this.then(null, errorFunc);
+    }
+
+    finally(callback) {
+        return new MyPromise((resolve, reject) => {
+            callback();
+            resolve();
+        });
+    }
+
+    static all(promises) {
+        return new MyPromise((resolve, reject) => {
+            const result = [];
+            deepPromise(promises[0], 0, result);
+            resolve(result);
+
+            function deepPromise(promise, index, result) {
+                if (index > promises.length - 1) {
+                    return;
+                }
+
+                if (typeof promise.then === "function") {
+                    promise.then(value => {
+                            index++;
+                            result.push(value);
+                            deepPromise(promises[index], index, result);
+                        },
+                        err => {
+                            reject(err);
+                        }
+                    );
+                }
+                else {
+                    index++;
+                    result.push(promise);
+                    deepPromise(promises[index], index, result);
+                }
+            }
+        });
+    }
+
+    static resolve(value) {
+        return new MyPromise((resolve, reject) => {
+            resolve(value);
+        });
+    }
+
+    static reject(reason) {
+        return new MyPromise((resolve, reject) => {
+            reject(reason);
+        });
+    }
+
+    static allSettled(promises) {
+        return new MyPromise((resolve, reject) => {
+            const result = [];
+            deepPromise(promises[0], 0, result);
+            resolve(result);
+
+            function deepPromise(promise, index, result) {
+                if (index > promises.length - 1) {
+                    return;
+                }
+
+                if (typeof promise.then === "function") {
+                    promise.then(value => {
+                            index++;
+                            result.push({ status: "fulfilled", value: value });
+                            deepPromise(promises[index], index, result);
+                        },
+                        err => {
+                            index++;
+                            result.push({ status: "rejected", value: err });
+                            deepPromise(promises[index], index, result);
+                        }
+                    );
+                }
+                else {
+                    index++;
+                    result.push({ status: "fulfilled", value: promise });
+                    deepPromise(promises[index], index, result);
+                }
+            }
+        });
+    }
+
+    static race(promises) {
+        return new MyPromise((resolve, reject) => {
+            let done = false;
+            for (const promise of promises) {
+                promise.then(value => {
+                        if (done) {
+                            return;
+                        }
+                        done = true;
+                        resolve(value);
+                    },
+                    err => {
+                        if (done) {
+                            return;
+                        }
+                        done = true;
+                        reject(err);
+                    }
+                );
+            }
+        });
     }
 }
 
@@ -153,4 +259,81 @@ const myPromise4 = new MyPromise((resolve, reject) => {
 
 myPromise4.catch(e => {
     console.log(e);
+});
+
+// Test all
+const myPromise5 = MyPromise.resolve(1);
+const myPromise6 = MyPromise.resolve(2);
+const myPromise7 = MyPromise.resolve(3);
+
+MyPromise.all([myPromise5, myPromise6, myPromise7]).then(res => {
+    console.log(res);
+});
+
+const myPromise8 = MyPromise.resolve(1);
+const myPromise9 = MyPromise.reject("reject");
+const myPromise10 = MyPromise.resolve(3);
+
+MyPromise.all([myPromise8, myPromise9, myPromise10]).then(res => {
+    console.log(res, "resolve");
+}).catch(e => {
+    console.log(e);
+});
+
+// Test resolve
+MyPromise.resolve("static resolve").then(res => {
+    console.log(res);
+});
+
+// Test reject
+MyPromise.reject("static reject").catch(e => {
+    console.log(e);
+});
+
+// Test allSettled
+const myPromise11 = MyPromise.resolve(1);
+const myPromise12 = MyPromise.resolve(2);
+const myPromise13 = MyPromise.resolve(3);
+
+MyPromise.allSettled([myPromise11, myPromise12, myPromise13]).then(res => {
+    console.log(res);
+});
+
+const myPromise14 = MyPromise.resolve(1);
+const myPromise15 = MyPromise.resolve("reject");
+const myPromise16 = MyPromise.resolve(3);
+
+MyPromise.allSettled([myPromise14, myPromise15, myPromise16]).then(res => {
+    console.log(res);
+});
+
+// Test finally
+const myPromise17 = MyPromise.resolve(1);
+
+myPromise17.then(res => {
+    console.log(res);
+}).finally(() => {
+    console.log("finally resolve");
+});
+
+const myPromise18 = MyPromise.reject(2);
+myPromise18.then(res => {
+    console.log(res);
+}).catch(e => {
+    console.log(e);
+}).finally(() => {
+    console.log("finally reject");
+});
+
+// Test race
+const myPromise19 = new MyPromise((resolve, reject) => {
+    setTimeout(resolve, 500, "one");
+});
+
+const myPromise20 = new MyPromise((resolve, reject) => {
+    setTimeout(resolve, 100, "two");
+});
+
+MyPromise.race([myPromise19, myPromise20]).then((value) => {
+    console.log(value);
 });
