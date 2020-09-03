@@ -1,8 +1,7 @@
-"use strict";
 const fs = require("fs");
 
-// 读取文件
-fs.readFile("sample.txt", "utf-8", function (err, data) {
+// Read a file.
+fs.readFile("sample.txt", "utf-8", (err, data) => {
     if (err) {
         console.log(err);
     }
@@ -11,20 +10,22 @@ fs.readFile("sample.txt", "utf-8", function (err, data) {
     }
 });
 
-// 读取图片
-fs.readFile("swift.png", function (err, data) {
-    if (err) {
-        console.log(err);
+// Read an image.
+fs.readFile("swift.png", (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(data);
+            console.log(data.length + "bytes");
+        }
     }
-    else {
-        console.log(data);
-        console.log(data.length + "bytes");
-    }
-});
+)
+;
 
-// 写入文件
-let data = "Hello,Node.js";
-fs.writeFile("output.txt", data, function (err) {
+// Write to a file.
+const data = "Hello,Node.js";
+fs.writeFile("output.txt", data, (err) => {
     if (err) {
         console.log(err);
     }
@@ -33,8 +34,8 @@ fs.writeFile("output.txt", data, function (err) {
     }
 });
 
-// 获取文件信息
-fs.stat("output.txt", function (err, stat) {
+// Get file info.
+fs.stat("output.txt", (err, stat) => {
     if (err) {
         console.log(err);
     }

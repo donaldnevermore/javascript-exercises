@@ -1,13 +1,15 @@
-const express = require("express");
-let app = express();
+const http = require("http");
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
+const hostname = "127.0.0.1";
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "text/plain");
+    res.end("Hello World");
 });
 
-let server = app.listen(3000, () => {
-    let host = server.address().address;
-    let port = server.address().port;
-
-    console.log(`正在监听http://${host}:${port}`);
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
 });
+
