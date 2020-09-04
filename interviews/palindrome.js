@@ -1,9 +1,20 @@
-function isPalindrome(input) {
-    if (typeof input !== "string") {
-        return false;
+function isPalindrome(str) {
+    if (str.length <= 1) {
+        return true;
     }
 
-    return input.split("").reverse().join("") === input;
+    let start = 0;
+    let end = str.length - 1;
+    while (start < end) {
+        if (str[start] !== str[end]) {
+            return false;
+        }
+
+        start++;
+        end--;
+    }
+
+    return true;
 }
 
 module.exports = isPalindrome;
