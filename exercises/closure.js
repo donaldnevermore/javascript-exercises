@@ -4,11 +4,9 @@ function createComparisonFunction(propertyName) {
         let value2 = object2[propertyName]; // 地方被调用，仍然可以访问propertyName
         if (value1 < value2) {
             return -1;
-        }
-        else if (value1 > value2) {
+        } else if (value1 > value2) {
             return 1;
-        }
-        else {
+        } else {
             return 0;
         }
     };
@@ -32,9 +30,9 @@ function createFunction2() {
     // 这里用 var 有坑
     for (let i = 0; i < 10; i++) {
         result[i] = function (num) {
-            return function () {
+            return (function () {
                 return num;
-            }(i);
+            })(i);
         };
     }
 

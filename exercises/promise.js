@@ -38,50 +38,47 @@ class MyPromise {
 
         try {
             executor(resolve, reject);
-        }
-        catch (e) {
+        } catch (e) {
             reject(e);
         }
     }
 
     then(resolve, reject) {
         if (typeof resolve !== "function") {
-            resolve = value => value;
+            resolve = (value) => value;
         }
 
         if (typeof reject !== "function") {
-            reject = reason => {
-                throw new Error(reason instanceof Error ? reason.message : reason);
+            reject = (reason) => {
+                throw new Error(
+                    reason instanceof Error ? reason.message : reason
+                );
             };
         }
 
         return new MyPromise((resolveFunc, rejectFunc) => {
-            const fulfilled = value => {
+            const fulfilled = (value) => {
                 try {
                     const res = resolve(value);
                     if (res instanceof MyPromise) {
                         res.then(resolveFunc, rejectFunc);
-                    }
-                    else {
+                    } else {
                         resolveFunc(res);
                     }
-                }
-                catch (e) {
+                } catch (e) {
                     rejectFunc(e);
                 }
             };
 
-            const rejected = reason => {
+            const rejected = (reason) => {
                 try {
                     const res = reject(reason);
                     if (res instanceof MyPromise) {
                         res.then(resolveFunc, rejectFunc);
-                    }
-                    else {
+                    } else {
                         rejectFunc(res);
                     }
-                }
-                catch (e) {
+                } catch (e) {
                     rejectFunc(e instanceof Error ? e.message : e);
                 }
             };
@@ -100,7 +97,6 @@ class MyPromise {
                 default:
                     break;
             }
-
         });
     }
 
@@ -127,17 +123,17 @@ class MyPromise {
                 }
 
                 if (typeof promise.then === "function") {
-                    promise.then(value => {
+                    promise.then(
+                        (value) => {
                             index++;
                             result.push(value);
                             deepPromise(promises[index], index, result);
                         },
-                        err => {
+                        (err) => {
                             reject(err);
                         }
                     );
-                }
-                else {
+                } else {
                     index++;
                     result.push(promise);
                     deepPromise(promises[index], index, result);
@@ -170,19 +166,19 @@ class MyPromise {
                 }
 
                 if (typeof promise.then === "function") {
-                    promise.then(value => {
+                    promise.then(
+                        (value) => {
                             index++;
                             result.push({ status: "fulfilled", value: value });
                             deepPromise(promises[index], index, result);
                         },
-                        err => {
+                        (err) => {
                             index++;
                             result.push({ status: "rejected", value: err });
                             deepPromise(promises[index], index, result);
                         }
                     );
-                }
-                else {
+                } else {
                     index++;
                     result.push({ status: "fulfilled", value: promise });
                     deepPromise(promises[index], index, result);
@@ -195,14 +191,15 @@ class MyPromise {
         return new MyPromise((resolve, reject) => {
             let done = false;
             for (const promise of promises) {
-                promise.then(value => {
+                promise.then(
+                    (value) => {
                         if (done) {
                             return;
                         }
                         done = true;
                         resolve(value);
                     },
-                    err => {
+                    (err) => {
                         if (done) {
                             return;
                         }
@@ -220,7 +217,7 @@ const myPromise = new MyPromise((resolve, reject) => {
     resolve("Promise sync");
 });
 
-myPromise.then(res => {
+myPromise.then((res) => {
     console.log(res);
 });
 
@@ -231,7 +228,7 @@ const myPromise2 = new MyPromise((resolve, reject) => {
     }, 500);
 });
 
-myPromise2.then(res => {
+myPromise2.then((res) => {
     console.log(res);
 });
 
@@ -240,24 +237,28 @@ const myPromise3 = new MyPromise((resolve, reject) => {
     resolve("First");
 });
 
-myPromise3.then(res => {
-    console.log(res);
-    return new MyPromise((resolve, reject) => {
-        resolve("Promise second");
+myPromise3
+    .then((res) => {
+        console.log(res);
+        return new MyPromise((resolve, reject) => {
+            resolve("Promise second");
+        });
+    })
+    .then()
+    .then((res) => {
+        console.log(res);
+        return "Third";
+    })
+    .then((res) => {
+        console.log(res);
     });
-}).then().then(res => {
-    console.log(res);
-    return "Third";
-}).then(res => {
-    console.log(res);
-});
 
 // Test catch
 const myPromise4 = new MyPromise((resolve, reject) => {
     reject("Promise reject");
 });
 
-myPromise4.catch(e => {
+myPromise4.catch((e) => {
     console.log(e);
 });
 
@@ -266,7 +267,7 @@ const myPromise5 = MyPromise.resolve(1);
 const myPromise6 = MyPromise.resolve(2);
 const myPromise7 = MyPromise.resolve(3);
 
-MyPromise.all([myPromise5, myPromise6, myPromise7]).then(res => {
+MyPromise.all([myPromise5, myPromise6, myPromise7]).then((res) => {
     console.log(res);
 });
 
@@ -274,19 +275,21 @@ const myPromise8 = MyPromise.resolve(1);
 const myPromise9 = MyPromise.reject("reject");
 const myPromise10 = MyPromise.resolve(3);
 
-MyPromise.all([myPromise8, myPromise9, myPromise10]).then(res => {
-    console.log(res, "resolve");
-}).catch(e => {
-    console.log(e);
-});
+MyPromise.all([myPromise8, myPromise9, myPromise10])
+    .then((res) => {
+        console.log(res, "resolve");
+    })
+    .catch((e) => {
+        console.log(e);
+    });
 
 // Test resolve
-MyPromise.resolve("static resolve").then(res => {
+MyPromise.resolve("static resolve").then((res) => {
     console.log(res);
 });
 
 // Test reject
-MyPromise.reject("static reject").catch(e => {
+MyPromise.reject("static reject").catch((e) => {
     console.log(e);
 });
 
@@ -295,7 +298,7 @@ const myPromise11 = MyPromise.resolve(1);
 const myPromise12 = MyPromise.resolve(2);
 const myPromise13 = MyPromise.resolve(3);
 
-MyPromise.allSettled([myPromise11, myPromise12, myPromise13]).then(res => {
+MyPromise.allSettled([myPromise11, myPromise12, myPromise13]).then((res) => {
     console.log(res);
 });
 
@@ -303,27 +306,32 @@ const myPromise14 = MyPromise.resolve(1);
 const myPromise15 = MyPromise.resolve("reject");
 const myPromise16 = MyPromise.resolve(3);
 
-MyPromise.allSettled([myPromise14, myPromise15, myPromise16]).then(res => {
+MyPromise.allSettled([myPromise14, myPromise15, myPromise16]).then((res) => {
     console.log(res);
 });
 
 // Test finally
 const myPromise17 = MyPromise.resolve(1);
 
-myPromise17.then(res => {
-    console.log(res);
-}).finally(() => {
-    console.log("finally resolve");
-});
+myPromise17
+    .then((res) => {
+        console.log(res);
+    })
+    .finally(() => {
+        console.log("finally resolve");
+    });
 
 const myPromise18 = MyPromise.reject(2);
-myPromise18.then(res => {
-    console.log(res);
-}).catch(e => {
-    console.log(e);
-}).finally(() => {
-    console.log("finally reject");
-});
+myPromise18
+    .then((res) => {
+        console.log(res);
+    })
+    .catch((e) => {
+        console.log(e);
+    })
+    .finally(() => {
+        console.log("finally reject");
+    });
 
 // Test race
 const myPromise19 = new MyPromise((resolve, reject) => {

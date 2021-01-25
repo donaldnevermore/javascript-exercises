@@ -7,7 +7,7 @@ let object = {
         return function () {
             return that.name;
         };
-    }
+    },
 };
 
 console.log(object.getNameFunc()());

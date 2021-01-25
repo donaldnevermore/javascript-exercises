@@ -13,7 +13,6 @@ function SubType(name, age) {
     this.age = age;
 }
 
-// 函数来实现继承
 function inheritPrototype(subType, superType) {
     let prototype = Object(superType.prototype);
     prototype.constructor = subType;

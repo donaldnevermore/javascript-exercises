@@ -46,6 +46,6 @@ function isType() {
 
 // test("test");
 
-for (let i = 0, type; type = ["String", "Array", "Number"][i++];) {
+for (let i = 0, type; (type = ["String", "Array", "Number"][i++]); ) {
     console.log(type); // 实际上就是遍历数组的hack写法
 }

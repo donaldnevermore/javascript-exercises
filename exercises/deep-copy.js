@@ -43,13 +43,11 @@ function deepCopy(obj) {
     }
 
     throw new Error(
-        "Unable to copy obj as type isn't supported " + obj.constructor.name);
+        "Unable to copy obj as type isn't supported " + obj.constructor.name
+    );
 }
 
-let arr = [
-    { a: 1, city: ["x", "y", "z"] },
-    { b: 2 }
-];
+let arr = [{ a: 1, city: ["x", "y", "z"] }, { b: 2 }];
 let arr2 = deepCopy(arr);
 console.log(arr);
 console.log(arr2);

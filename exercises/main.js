@@ -16,7 +16,7 @@ function greet2(name) {
 
 module.exports = {
     hello: hello2,
-    greet: greet2
+    greet: greet2,
 };
 
 // 方法二： 直接使用exports：
