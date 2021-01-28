@@ -11,4 +11,4 @@ let object = {
 };
 
 console.log(object.getNameFunc()());
-// object.getNameFunc() 只是返回了一个函数，后面加上 () 来立即执行
+// object.getNameFunc()只是返回了一个函数，后面加上()来立即执行

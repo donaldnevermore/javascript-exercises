@@ -44,7 +44,7 @@ Object.defineProperty(person5, "name", {
     value: "Nicholas",
 });
 
-// Throws error.
+// throws error
 // Object.defineProperty(person5, "name", {
 //     configurable: true,
 //     value: "Nicholas"

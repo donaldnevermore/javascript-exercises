@@ -4,7 +4,7 @@ let xiaoming = {
     gender: true,
     height: 1.65,
     grade: null,
-    "middle-school": '"W3C" Middle School',
+    "middle-school": `"W3C" Middle School`,
     skills: ["JavaScript", "Java", "Python", "Lisp"],
     toJSON: function () {
         return {
@@ -27,7 +27,7 @@ function convert(key, value) {
 // console.log(JSON.stringify(xiaoming));
 
 console.log(
-    JSON.parse('{"name":"小明","age":14}', function (key, value) {
+    JSON.parse(`{"name":"小明","age":14}`, function (key, value) {
         if (key === "name") {
             return value + "同学";
         }

@@ -1,8 +1,6 @@
 function Person(name, age, job) {
     let o = {};
 
-    let name = name;
-
     o.sayName = function () {
         console.log(name);
     };

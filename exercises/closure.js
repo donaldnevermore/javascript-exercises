@@ -27,7 +27,7 @@ function createFunction() {
 function createFunction2() {
     let result = [];
 
-    // 这里用 var 有坑
+    // bad to use var
     for (let i = 0; i < 10; i++) {
         result[i] = function (num) {
             return (function () {

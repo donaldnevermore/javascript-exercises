@@ -1,4 +1,4 @@
-// simple prototype
+// Simple prototype
 function Person() {}
 
 Person.prototype = {
@@ -55,7 +55,7 @@ Person3.prototype = {
     },
 };
 
-// error
+// Throws error
 // friend2.sayName();
 
 console.log(typeof Array.prototype.sort); // -> "function"

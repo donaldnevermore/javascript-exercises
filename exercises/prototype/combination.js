@@ -1,4 +1,4 @@
-// It's common to use a combination of constructor and prototype.
+// It's common.
 
 function Person(name, age, job) {
     this.name = name;
@@ -14,7 +14,7 @@ Person.prototype = {
     },
 };
 
-// a better implementation
+// A better implementation
 // Person.prototype.sayName = function () {
 //     console.log(this.name);
 // };

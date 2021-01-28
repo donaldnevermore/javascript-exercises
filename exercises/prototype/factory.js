@@ -1,4 +1,4 @@
-// factory pattern
+// Factory pattern
 function createPerson(name, age, job) {
     let o = {};
     o.name = name;
@@ -15,7 +15,7 @@ function createPerson(name, age, job) {
 let person1 = createPerson("Nicholas", 29, "Software Engineer");
 let person2 = createPerson("Greg", 27, "Doctor");
 
-// constructor pattern
+// Constructor pattern
 function Person(name, age, job) {
     this.name = name;
     this.age = age;
@@ -37,22 +37,22 @@ console.log(person3 instanceof Person); // -> true
 console.log(person4 instanceof Object); // -> true
 console.log(person4 instanceof Person); // -> true
 
-// as constructor
+// As constructor
 let person5 = new Person("Nicholas", 29, "Software Engineer");
 person5.sayName(); // -> "Nicholas"
 
-// as normal function
+// As normal function
 Person("Greg", 27, "Doctor");
 global.sayName(); // -> "Greg"
 
-// called in another object
+// Called in another object
 let o = {};
 Person.call(o, "Kristen", 25, "Nurse");
 o.sayName(); // -> "Kristen
 
 let person5 = new Person("Nicholas", 29, "Software Engineer");
 let person6 = new Person("Greg", 27, "Doctor");
-// constructor problem
+// Constructor problem
 console.log(person5.sayName === person6.sayName); // -> false
 
 function Person(name, age, job) {
