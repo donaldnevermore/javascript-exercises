@@ -1,4 +1,4 @@
-// It's common.
+// A common implementation.
 
 function Person(name, age, job) {
     this.name = name;

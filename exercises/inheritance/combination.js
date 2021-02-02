@@ -1,4 +1,4 @@
-// It's common.
+// A common implementation.
 
 function SuperType(name) {
     this.name = name;

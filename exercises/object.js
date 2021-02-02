@@ -1,4 +1,4 @@
-let person = new Object();
+let person = {};
 person.name = "Nicholas";
 person.age = 29;
 person.job = "Software Engineer";
@@ -44,7 +44,7 @@ Object.defineProperty(person5, "name", {
     value: "Nicholas",
 });
 
-// throws error
+// Throws error
 // Object.defineProperty(person5, "name", {
 //     configurable: true,
 //     value: "Nicholas"

@@ -19,7 +19,6 @@ class Singleton {
         }
         return this.instance;
     }
-
 }
 
 let a = Singleton.getInstance("sven1");

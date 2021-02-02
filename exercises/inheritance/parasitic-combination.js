@@ -1,4 +1,4 @@
-// It's better.
+// A better implementation.
 
 function object(o) {
     function F() {}

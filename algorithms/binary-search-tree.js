@@ -19,8 +19,7 @@ function insert(data) {
     let n = new Node(data, null, null);
     if (this.root == null) {
         this.root = n;
-    }
-    else {
+    } else {
         let current = this.root;
         let parent;
         while (true) {
@@ -31,8 +30,7 @@ function insert(data) {
                     parent.left = n;
                     break;
                 }
-            }
-            else {
+            } else {
                 current = current.right;
                 if (current == null) {
                     parent.right = n;

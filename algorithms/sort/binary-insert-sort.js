@@ -18,8 +18,7 @@ function binaryInsertSort(arr) {
             const middle = Number.parseInt(String((left + right) / 2));
             if (key < arr[middle]) {
                 right = middle - 1;
-            }
-            else {
+            } else {
                 left = middle + 1;
             }
         }
