@@ -18,7 +18,7 @@ let yetAnotherPerson = object(person);
 yetAnotherPerson.name = "Linda";
 yetAnotherPerson.friends.push("Barbie");
 
-console.log(person.friends); // -> ["Shelby", "Court", "Van", "Barbie"]
+console.log(person.friends); // ["Shelby", "Court", "Van", "Barbie"]
 
 let person2 = {
     name: "Nicholas",
@@ -33,7 +33,7 @@ let yetAnotherPerson2 = object(person2);
 yetAnotherPerson2.name = "Linda";
 yetAnotherPerson2.friends.push("Barbie");
 
-console.log(person2.friends); // -> ["Shelby", "Court", "Van", "Barbie"]
+console.log(person2.friends); // ["Shelby", "Court", "Van", "Barbie"]
 
 let person3 = {
     name: "Nicholas",

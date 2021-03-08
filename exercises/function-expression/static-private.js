@@ -31,10 +31,10 @@
 })();
 
 let person1 = new Person("Nicholas");
-console.log(person1.getName()); // -> "Nicholas"
+console.log(person1.getName()); // "Nicholas"
 person1.setName("Greg");
-console.log(person1.getName()); // -> "Greg"
+console.log(person1.getName()); // "Greg"
 
 let person2 = new Person("Michael");
-console.log(person1.getName()); // -> "Michael"
-console.log(person2.getName()); // -> "Michael"
+console.log(person1.getName()); // "Michael"
+console.log(person2.getName()); // "Michael"

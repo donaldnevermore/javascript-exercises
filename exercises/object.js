@@ -24,9 +24,9 @@ Object.defineProperty(person3, "name", {
     value: "Nicholas",
 });
 
-console.log(person3.name); // -> "Nicholas"
+console.log(person3.name); // "Nicholas"
 person.name = "Greg";
-console.log(person3.name); // -> "Nicholas"
+console.log(person3.name); // "Nicholas"
 
 let person4 = {};
 Object.defineProperty(person4, "name", {
@@ -34,9 +34,9 @@ Object.defineProperty(person4, "name", {
     value: "Nicholas",
 });
 
-console.log(person4.name); // -> "Nicholas"
+console.log(person4.name); // "Nicholas"
 delete person.name;
-console.log(person4.name); // -> "Nicholas"
+console.log(person4.name); // "Nicholas"
 
 let person5 = {};
 Object.defineProperty(person5, "name", {
@@ -68,7 +68,7 @@ Object.defineProperty(book, "year", {
 });
 
 book.year = 2005;
-console.log(book.edition); // -> 2
+console.log(book.edition); // 2
 
 let book2 = {};
 
@@ -117,11 +117,11 @@ Object.defineProperties(book3, {
 });
 
 let descriptor = Object.getOwnPropertyDescriptor(book3, "_year");
-console.log(descriptor.value); // -> 2004
-console.log(descriptor.configurable); // -> false
-console.log(typeof descriptor.get); // -> "undefined"
+console.log(descriptor.value); // 2004
+console.log(descriptor.configurable); // false
+console.log(typeof descriptor.get); // "undefined"
 
 let descriptor2 = Object.getOwnPropertyDescriptor(book3, "year");
-console.log(descriptor.value); // -> undefined
-console.log(descriptor.configurable); // -> false
-console.log(typeof descriptor2.get); // -> "function"
+console.log(descriptor.value); // undefined
+console.log(descriptor.configurable); // false
+console.log(typeof descriptor2.get); // "function"

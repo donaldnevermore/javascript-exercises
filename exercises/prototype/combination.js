@@ -24,7 +24,7 @@ let person2 = new Person("Greg", 27, "Doctor");
 
 person1.friends.push("Van");
 
-console.log(person1.friends); // -> "Shelby,Court,Van"
-console.log(person2.friends); // -> "Shelby,Court"
-console.log(person1.friends === person2.friends); // -> false
-console.log(person1.sayName === person2.sayName); // -> true
+console.log(person1.friends); // "Shelby,Court,Van"
+console.log(person2.friends); // "Shelby,Court"
+console.log(person1.friends === person2.friends); // false
+console.log(person1.sayName === person2.sayName); // true

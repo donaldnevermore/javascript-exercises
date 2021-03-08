@@ -8,10 +8,10 @@ function SubType() {
 
 let instance1 = new SubType();
 instance1.colors.push("black");
-console.log(instance1.colors); // -> ['red', 'blue', 'green', 'black']
+console.log(instance1.colors); // ['red', 'blue', 'green', 'black']
 
 let instance2 = new SubType();
-console.log(instance2.colors); // -> ['red', 'blue', 'green']
+console.log(instance2.colors); // ['red', 'blue', 'green']
 
 console.log(instance1.colors === instance2.colors);
 
@@ -26,5 +26,5 @@ function SubType2() {
 }
 
 let instance3 = new SubType2();
-console.log(instance3.name); // -> "Nicholas"
-console.log(instance3.age); // -> 29
+console.log(instance3.name); // "Nicholas"
+console.log(instance3.age); // 29

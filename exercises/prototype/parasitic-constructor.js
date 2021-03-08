@@ -12,7 +12,7 @@ function Person(name, age, job) {
 }
 
 let friend = new Person("Nicholas", 29, "Software Engineer");
-friend.sayName(); // -> "Nicholas"
+friend.sayName(); // "Nicholas"
 
 function SpecialArray() {
     let values = [];
@@ -27,4 +27,4 @@ function SpecialArray() {
 }
 
 let colors = new SpecialArray("red", "blue", "green");
-console.log(colors.toPiedString()); // -> "red|blue|green"
+console.log(colors.toPiedString()); // "red|blue|green"

@@ -31,11 +31,11 @@ SubType.prototype.getSubValue = function () {
 };
 
 let instance = new SubType();
-console.log(instance.getSuperValue()); // -> true
+console.log(instance.getSuperValue()); // true
 
-console.log(instance instanceof Object); // -> true
-console.log(instance instanceof SuperType); // -> true
-console.log(instance instanceof SubType); // -> true
+console.log(instance instanceof Object); // true
+console.log(instance instanceof SuperType); // true
+console.log(instance instanceof SubType); // true
 
 // override supertype method
 SubType.prototype.getSuperValue = function () {
@@ -43,7 +43,7 @@ SubType.prototype.getSuperValue = function () {
 };
 
 let instance2 = new SubType();
-console.log(instance2.getSuperValue()); // -> false
+console.log(instance2.getSuperValue()); // false
 
 function SuperType2() {
     this.colors = ["red", "blue", "green"];
@@ -55,9 +55,9 @@ SubType.prototype = new SuperType2();
 
 let instance4 = new SubType();
 instance1.colors.push("black");
-console.log(instance1.colors); // -> ['red', 'blue', 'green', 'black']
+console.log(instance1.colors); // ['red', 'blue', 'green', 'black']
 
 let instance5 = new SubType();
-console.log(instance2.colors); // -> ['red', 'blue', 'green', 'black']
+console.log(instance2.colors); // ['red', 'blue', 'green', 'black']
 
 console.log(instance1.colors === instance2.colors);

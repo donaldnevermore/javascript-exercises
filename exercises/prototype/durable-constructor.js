@@ -9,4 +9,4 @@ function Person(name, age, job) {
 }
 
 let friend = Person("Nicholas", 29, "Software Engineer");
-friend.sayName(); // -> "Nicholas"
+friend.sayName(); // "Nicholas"

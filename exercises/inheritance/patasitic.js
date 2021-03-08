@@ -19,4 +19,4 @@ let person = {
 };
 
 let anotherPerson = createAnother(person);
-anotherPerson.sayHi(); // -> "hi"
+anotherPerson.sayHi(); // "hi"

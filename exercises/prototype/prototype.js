@@ -12,10 +12,10 @@ Person.prototype = {
 
 let friend = new Person();
 
-console.log(friend instanceof Object); // -> true
-console.log(friend instanceof Person); // -> true
-console.log(friend.constructor === Person); // -> false
-console.log(friend.constructor === Object); // -> true
+console.log(friend instanceof Object); // true
+console.log(friend instanceof Person); // true
+console.log(friend.constructor === Person); // false
+console.log(friend.constructor === Object); // true
 
 function Person2() {}
 
@@ -58,15 +58,15 @@ Person3.prototype = {
 // Throws error
 // friend2.sayName();
 
-console.log(typeof Array.prototype.sort); // -> "function"
-console.log(typeof String.prototype.substring); // -> "function"
+console.log(typeof Array.prototype.sort); // "function"
+console.log(typeof String.prototype.substring); // "function"
 
 String.prototype.startsWith = function (text) {
     return this.indexOf(text) === 0;
 };
 
 let msg = "Hello world!";
-console.log(msg.startsWith("Hello")); // -> true
+console.log(msg.startsWith("Hello")); // true
 
 function Person4() {}
 
@@ -87,6 +87,6 @@ let person2 = new Person4();
 
 person1.friends.push("Van");
 
-console.log(person1.friends); // -> "Shelby,Court,Van"
-console.log(person2.friends); // -> "Shelby,Court,Van"
-console.log(person1.friends === person2.friends); // -> true
+console.log(person1.friends); // "Shelby,Court,Van"
+console.log(person2.friends); // "Shelby,Court,Van"
+console.log(person1.friends === person2.friends); // true
