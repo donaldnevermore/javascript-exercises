@@ -6,16 +6,16 @@ Person.prototype = {
     age: 29,
     job: "Software Engineer",
     sayName: function () {
-        console.log(this.name);
+        console.log(this.name)
     },
-};
+}
 
-let friend = new Person();
+let friend = new Person()
 
-console.log(friend instanceof Object); // true
-console.log(friend instanceof Person); // true
-console.log(friend.constructor === Person); // false
-console.log(friend.constructor === Object); // true
+console.log(friend instanceof Object) // true
+console.log(friend instanceof Person) // true
+console.log(friend.constructor === Person) // false
+console.log(friend.constructor === Object) // true
 
 function Person2() {}
 
@@ -25,25 +25,25 @@ Person2.prototype = {
     age: 29,
     job: "Software Engineer",
     sayName: function () {
-        console.log(this.name);
+        console.log(this.name)
     },
-};
+}
 
 Object.defineProperty(Person.prototype, "constructor", {
     enumerable: false,
     value: Person,
-});
+})
 
 Person.prototype.sayHi = function () {
-    console.log("hi");
-};
+    console.log("hi")
+}
 
-let friend2 = new Person();
-friend2.sayHi();
+let friend2 = new Person()
+friend2.sayHi()
 
 function Person3() {}
 
-let friend3 = new Person3();
+let friend3 = new Person3()
 
 Person3.prototype = {
     constructor: Person3,
@@ -51,22 +51,22 @@ Person3.prototype = {
     age: 29,
     job: "Software Engineer",
     sayName: function () {
-        console.log(this.name);
+        console.log(this.name)
     },
-};
+}
 
 // Throws error
 // friend2.sayName();
 
-console.log(typeof Array.prototype.sort); // "function"
-console.log(typeof String.prototype.substring); // "function"
+console.log(typeof Array.prototype.sort) // "function"
+console.log(typeof String.prototype.substring) // "function"
 
 String.prototype.startsWith = function (text) {
-    return this.indexOf(text) === 0;
-};
+    return this.indexOf(text) === 0
+}
 
-let msg = "Hello world!";
-console.log(msg.startsWith("Hello")); // true
+let msg = "Hello world!"
+console.log(msg.startsWith("Hello")) // true
 
 function Person4() {}
 
@@ -78,15 +78,15 @@ Person4.prototype = {
     friends: ["Shelby", "Court"],
 
     sayName: function () {
-        console.log(this.name);
+        console.log(this.name)
     },
-};
+}
 
-let person1 = new Person4();
-let person2 = new Person4();
+let person1 = new Person4()
+let person2 = new Person4()
 
-person1.friends.push("Van");
+person1.friends.push("Van")
 
-console.log(person1.friends); // "Shelby,Court,Van"
-console.log(person2.friends); // "Shelby,Court,Van"
-console.log(person1.friends === person2.friends); // true
+console.log(person1.friends) // "Shelby,Court,Van"
+console.log(person2.friends) // "Shelby,Court,Van"
+console.log(person1.friends === person2.friends) // true

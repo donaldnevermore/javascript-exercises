@@ -1,18 +1,18 @@
-const events = require("events");
-const eventEmitter = new events.EventEmitter();
+const events = require("events")
+const eventEmitter = new events.EventEmitter()
 
 const connectHandler = () => {
-    console.log("Connected.");
+    console.log("Connected.")
 
-    eventEmitter.emit("data_received");
-};
+    eventEmitter.emit("data_received")
+}
 
-eventEmitter.on("connection", connectHandler);
+eventEmitter.on("connection", connectHandler)
 
 eventEmitter.on("data_received", () => {
-    console.log("Received.");
-});
+    console.log("Received.")
+})
 
-eventEmitter.emit("connection");
+eventEmitter.emit("connection")
 
-console.log("Done.");
+console.log("Done.")

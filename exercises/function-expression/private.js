@@ -1,32 +1,32 @@
 function add(num1, num2) {
-    let sum = num1 + num2;
-    return sum;
+    let sum = num1 + num2
+    return sum
 }
 
 function MyObject() {
-    let privateVariable = 10;
+    let privateVariable = 10
 
     function privateFunction() {
-        return false;
+        return false
     }
 
     this.publicMethod = function () {
-        privateVariable++;
-        return privateFunction();
-    };
+        privateVariable++
+        return privateFunction()
+    }
 }
 
 function Person(name) {
     this.getName = function () {
-        return name;
-    };
+        return name
+    }
 
     this.setName = function (value) {
-        name = value;
-    };
+        name = value
+    }
 }
 
-let person = new Person("Nicholas");
-console.log(person.getName());
-person.setName("Greg");
-console.log(person.getName());
+let person = new Person("Nicholas")
+console.log(person.getName())
+person.setName("Greg")
+console.log(person.getName())

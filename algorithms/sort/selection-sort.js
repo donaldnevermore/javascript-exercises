@@ -11,19 +11,19 @@
  * 以此类推，直到所有元素均排序完毕。
  */
 function selectionSort(arr) {
-    const n = arr.length;
+    const n = arr.length
 
     for (let i = 0; i < n; i++) {
-        let min = i;
+        let min = i
 
         for (let j = i + 1; j < n; j++) {
             if (arr[j] < arr[min]) {
-                min = j;
+                min = j
             }
         }
 
-        const temp = arr[i];
-        arr[i] = arr[min];
-        arr[min] = temp;
+        const temp = arr[i]
+        arr[i] = arr[min]
+        arr[min] = temp
     }
 }

@@ -1,9 +1,9 @@
-"use strict";
+"use strict"
 
-let s = "hello";
+let s = "hello"
 
 function greet(name) {
-    console.log(s + "," + name + "!");
+    console.log(s + "," + name + "!")
 }
 
-module.exports = greet;
+module.exports = greet

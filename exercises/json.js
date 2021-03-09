@@ -10,18 +10,18 @@ let xiaoming = {
         return {
             Name: this.name,
             Age: this.age,
-        };
+        }
     },
-};
+}
 
 // 加上参数，按缩进输出
 // console.log(JSON.stringify(xiaoming, convert, ' '));
 
 function convert(key, value) {
     if (typeof value === "string") {
-        return value.toUpperCase();
+        return value.toUpperCase()
     }
-    return value;
+    return value
 }
 
 // console.log(JSON.stringify(xiaoming));
@@ -29,8 +29,8 @@ function convert(key, value) {
 console.log(
     JSON.parse(`{"name":"小明","age":14}`, function (key, value) {
         if (key === "name") {
-            return value + "同学";
+            return value + "同学"
         }
-        return value;
+        return value
     })
-);
+)

@@ -8,21 +8,21 @@
  * 再对全体元素进行一次直接插入排序
  */
 function shellSort(arr) {
-    const n = arr.length;
-    let h = 1;
+    const n = arr.length
+    let h = 1
     while (h < Math.floor(n / 3)) {
-        h = 3 * h + 1;
+        h = 3 * h + 1
     }
 
     while (h >= 1) {
         for (let i = h; i < n; i++) {
             for (let j = i; j >= h && a[j] < a[j - h]; j -= h) {
-                const temp = a[j];
-                a[j] = a[j - h];
-                a[j - h] = temp;
+                const temp = a[j]
+                a[j] = a[j - h]
+                a[j - h] = temp
             }
         }
 
-        h = Math.floor(h / 3);
+        h = Math.floor(h / 3)
     }
 }

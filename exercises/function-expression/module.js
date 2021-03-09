@@ -1,34 +1,34 @@
 let singleton = (function () {
-    let privateVariable = 10;
+    let privateVariable = 10
 
     function privateFunction() {
-        return false;
+        return false
     }
 
     return {
         publicProperty: true,
 
         publicMethod: function () {
-            privateVariable++;
-            return privateFunction();
+            privateVariable++
+            return privateFunction()
         },
-    };
-})();
+    }
+})()
 
 let application = (function () {
-    let components = [];
+    let components = []
 
-    components.push(new BaseComponent());
+    components.push(new BaseComponent())
 
     return {
         getComponentCount: function () {
-            return components.length;
+            return components.length
         },
 
         registerComponent: function (component) {
             if (typeof component === "object") {
-                components.push(component);
+                components.push(component)
             }
         },
-    };
-})();
+    }
+})()

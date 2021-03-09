@@ -1,20 +1,20 @@
 function isPalindrome(str) {
     if (str.length <= 1) {
-        return true;
+        return true
     }
 
-    let start = 0;
-    let end = str.length - 1;
+    let start = 0
+    let end = str.length - 1
     while (start < end) {
         if (str[start] !== str[end]) {
-            return false;
+            return false
         }
 
-        start++;
-        end--;
+        start++
+        end--
     }
 
-    return true;
+    return true
 }
 
-module.exports = isPalindrome;
+module.exports = isPalindrome

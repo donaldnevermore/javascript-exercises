@@ -1,6 +1,6 @@
 function throttle(method, context = null) {
-    clearTimeout(method.timerID);
+    clearTimeout(method.timerID)
     method.timerID = setTimeout(() => {
-        method.call(context);
-    }, 100);
+        method.call(context)
+    }, 100)
 }
