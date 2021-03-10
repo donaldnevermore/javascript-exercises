@@ -1,4 +1,4 @@
-function letTest() {
+function letScope() {
     let x = 1
     if (true) {
         let x = 2
@@ -7,4 +7,4 @@ function letTest() {
     console.log(x) // 1
 }
 
-letTest()
+letScope()

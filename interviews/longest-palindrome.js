@@ -42,13 +42,17 @@ function longestPalindromeDP(str) {
     for (let i = 0; i < str.length; i++) {
         for (let j = 0; j <= i; j++) {
             if (i - j < 2) {
+                // i next to j of i == j
                 dp[j][i] = str[i] === str[j]
             } else {
+                // Compare, then bring i and j closer.
                 dp[j][i] = str[i] === str[j] && dp[j + 1][i - 1]
             }
 
-            if (dp[j][i] && longest < i - j + 1) {
-                longest = i - j + 1
+            // Found a longer one.
+            const distance = i - j + 1
+            if (dp[j][i] && longest < distance) {
+                longest = distance
                 start = j
             }
         }
