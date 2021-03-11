@@ -1,7 +1,7 @@
 const {
     longestPalindrome,
     longestPalindromeDP,
-} = require("./longest-palindrome")
+} = require("./q005-longest-palindrome")
 
 test("", () => {
     const r = longestPalindrome("abbabbcc")
