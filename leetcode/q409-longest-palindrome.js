@@ -10,7 +10,8 @@ const longestPalindrome = function (s) {
         if (counter.has(ch)) {
             counter.delete(ch)
             sum += 2
-        } else {
+        }
+        else {
             counter.add(ch)
         }
     }
