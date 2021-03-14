@@ -15,7 +15,8 @@ const server = http.createServer((req, res) => {
             console.log("200 " + req.url)
             res.writeHead(200)
             fs.createReadStream(filepath).pipe(res)
-        } else {
+        }
+        else {
             console.log("404 " + req.url)
             res.writeHead(404)
             res.end("404 Not Found")

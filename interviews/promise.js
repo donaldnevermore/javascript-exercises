@@ -38,7 +38,8 @@ class MyPromise {
 
         try {
             executor(resolve, reject)
-        } catch (e) {
+        }
+        catch (e) {
             reject(e)
         }
     }
@@ -62,10 +63,12 @@ class MyPromise {
                     const res = resolve(value)
                     if (res instanceof MyPromise) {
                         res.then(resolveFunc, rejectFunc)
-                    } else {
+                    }
+                    else {
                         resolveFunc(res)
                     }
-                } catch (e) {
+                }
+                catch (e) {
                     rejectFunc(e)
                 }
             }
@@ -75,27 +78,29 @@ class MyPromise {
                     const res = reject(reason)
                     if (res instanceof MyPromise) {
                         res.then(resolveFunc, rejectFunc)
-                    } else {
+                    }
+                    else {
                         rejectFunc(res)
                     }
-                } catch (e) {
+                }
+                catch (e) {
                     rejectFunc(e instanceof Error ? e.message : e)
                 }
             }
 
             switch (this.status) {
-                case RESOLVED:
-                    fulfilled(this.value)
-                    break
-                case REJECTED:
-                    rejected(this.reason)
-                    break
-                case PENDING:
-                    this.resolves.push(fulfilled)
-                    this.rejects.push(rejected)
-                    break
-                default:
-                    break
+            case RESOLVED:
+                fulfilled(this.value)
+                break
+            case REJECTED:
+                rejected(this.reason)
+                break
+            case PENDING:
+                this.resolves.push(fulfilled)
+                this.rejects.push(rejected)
+                break
+            default:
+                break
             }
         })
     }
@@ -133,7 +138,8 @@ class MyPromise {
                             reject(err)
                         }
                     )
-                } else {
+                }
+                else {
                     index++
                     result.push(promise)
                     deepPromise(promises[index], index, result)
@@ -178,7 +184,8 @@ class MyPromise {
                             deepPromise(promises[index], index, result)
                         }
                     )
-                } else {
+                }
+                else {
                     index++
                     result.push({ status: "fulfilled", value: promise })
                     deepPromise(promises[index], index, result)

@@ -1,4 +1,4 @@
-;(function () {
+(function () {
     let privateVariable = 10
 
     function privateFunction() {
@@ -14,7 +14,7 @@
     }
 })()
 
-;(function () {
+(function () {
     let name = ""
 
     Person = function (value) {

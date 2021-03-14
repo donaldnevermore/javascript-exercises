@@ -5,9 +5,11 @@ function createComparisonFunction(propertyName) {
         let value2 = object2[propertyName]
         if (value1 < value2) {
             return -1
-        } else if (value1 > value2) {
+        }
+        else if (value1 > value2) {
             return 1
-        } else {
+        }
+        else {
             return 0
         }
     }
@@ -16,9 +18,11 @@ function createComparisonFunction(propertyName) {
 function compare(value1, value2) {
     if (value1 < value2) {
         return -1
-    } else if (value1 > value2) {
+    }
+    else if (value1 > value2) {
         return 1
-    } else {
+    }
+    else {
         return 0
     }
 }

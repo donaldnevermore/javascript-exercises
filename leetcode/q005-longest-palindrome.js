@@ -10,7 +10,7 @@ function longestPalindrome(str) {
         findLongest(i - 1, i + 1)
         findLongest(i, i + 1)
 
-        function findLongest(j, k) {
+        const findLongest = (j, k) => {
             while (j >= 0 && k < str.length && str[j] === str[k]) {
                 if (k - j + 1 > longest) {
                     longest = k - j + 1
@@ -44,7 +44,8 @@ function longestPalindromeDP(str) {
             if (i - j < 2) {
                 // i next to j of i == j
                 dp[j][i] = str[i] === str[j]
-            } else {
+            }
+            else {
                 // Compare, then bring i and j closer.
                 dp[j][i] = str[i] === str[j] && dp[j + 1][i - 1]
             }

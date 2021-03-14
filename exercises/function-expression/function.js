@@ -24,7 +24,8 @@ if (condition) {
     function sayHi() {
         console.log("Hi!")
     }
-} else {
+}
+else {
     function sayHi() {
         console.log("Yo!")
     }
@@ -37,7 +38,8 @@ if (condition) {
     sayHi3 = function () {
         console.log("Hi!")
     }
-} else {
+}
+else {
     sayHi3 = function () {
         console.log("Yo!")
     }

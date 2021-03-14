@@ -16,10 +16,10 @@ function shellSort(arr) {
 
     while (h >= 1) {
         for (let i = h; i < n; i++) {
-            for (let j = i; j >= h && a[j] < a[j - h]; j -= h) {
-                const temp = a[j]
-                a[j] = a[j - h]
-                a[j - h] = temp
+            for (let j = i; j >= h && arr[j] < arr[j - h]; j -= h) {
+                const temp = arr[j]
+                arr[j] = arr[j - h]
+                arr[j - h] = temp
             }
         }
 

@@ -37,7 +37,8 @@ class AsyncPolling {
                 if (this.end !== 0) {
                     // 如果拿到数据了
                     this.remainTime = limitTime - (this.end - this.start)
-                } else {
+                }
+                else {
                     // 如果还没拿到接口数据，设置剩余时间
                     this.remainTime = limitTime
                 }
@@ -45,7 +46,8 @@ class AsyncPolling {
                 // 如果剩余时间小于等于 0 就结束定时器
                 if (this.remainTime <= 0) {
                     clearTimeout(timer)
-                } else {
+                }
+                else {
                     this.remainTime -= interval
 
                     // 轮询一次，num 就减少一次
@@ -62,7 +64,8 @@ class AsyncPolling {
             }).catch((err) => {
                 console.log(err)
             })
-        } else {
+        }
+        else {
             clearTimeout(timer)
         }
     }

@@ -14,9 +14,11 @@ function binarySearch(arr, num) {
         let mid = low + Math.floor((high - low) / 2)
         if (arr[mid] < num) {
             low = mid + 1
-        } else if (arr[mid] > num) {
+        }
+        else if (arr[mid] > num) {
             high = mid - 1
-        } else {
+        }
+        else {
             return mid
         }
     }

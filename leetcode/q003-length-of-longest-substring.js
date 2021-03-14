@@ -12,13 +12,15 @@ const lengthOfLongestSubstring = function (s) {
         let prevIndex
         if (position.has(s[i])) {
             prevIndex = position.get(s[i])
-        } else {
+        }
+        else {
             prevIndex = -1
         }
 
         if (prevIndex < 0 || i - prevIndex > curLength) {
             curLength++
-        } else {
+        }
+        else {
             if (curLength > maxLength) {
                 maxLength = curLength
             }

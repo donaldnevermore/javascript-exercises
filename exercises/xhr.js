@@ -3,7 +3,8 @@ xhr.onreadystatechange = function () {
     if (xhr.readyState == 4) {
         if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
             alert(xhr.responseText)
-        } else {
+        }
+        else {
             alert("请求不成功：" + xhr.status)
         }
     }
@@ -20,7 +21,8 @@ xhr.send({
 function createXHR() {
     if (typeof XMLHttpRequest != "undefined") {
         return new XMLHttpRequest()
-    } else if (typeof arguments.callee.activeXString != "string") {
+    }
+    else if (typeof arguments.callee.activeXString != "string") {
         var versions = [
                 "MSXML2.XMLHttp.6.0",
                 "MSXML2.XMLHttp.3.0",
@@ -32,12 +34,14 @@ function createXHR() {
             try {
                 new ActiveXObject(versions[i])
                 arguments.callee.activeXString = versions[i]
-            } catch (ex) {
+            }
+            catch (ex) {
                 // 跳过
             }
         }
         return new ActiveXObject(arguments.callee.activeXString)
-    } else {
+    }
+    else {
         throw new Error("No XHR object available")
     }
 }

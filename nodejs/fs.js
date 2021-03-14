@@ -4,7 +4,8 @@ const fs = require("fs")
 fs.readFile("sample.txt", "utf-8", (err, data) => {
     if (err) {
         console.log(err)
-    } else {
+    }
+    else {
         console.log(data)
     }
 })
@@ -13,7 +14,8 @@ fs.readFile("sample.txt", "utf-8", (err, data) => {
 fs.readFile("swift.png", (err, data) => {
     if (err) {
         console.log(err)
-    } else {
+    }
+    else {
         console.log(data)
         console.log(data.length + "bytes")
     }
@@ -24,7 +26,8 @@ const data = "Hello,Node.js"
 fs.writeFile("output.txt", data, (err) => {
     if (err) {
         console.log(err)
-    } else {
+    }
+    else {
         console.log("ok!")
     }
 })
@@ -33,7 +36,8 @@ fs.writeFile("output.txt", data, (err) => {
 fs.stat("output.txt", (err, stat) => {
     if (err) {
         console.log(err)
-    } else {
+    }
+    else {
         console.log("isFile: " + stat.isFile())
         console.log("isDirectory: " + stat.isDirectory())
         if (stat.isFile()) {

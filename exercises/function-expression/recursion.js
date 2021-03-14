@@ -1,7 +1,8 @@
 function factorial(num) {
     if (num <= 1) {
         return 1
-    } else {
+    }
+    else {
         return num * factorial(num - 1)
     }
 }
@@ -14,7 +15,8 @@ factorial = null
 function factorial2(num) {
     if (num <= 1) {
         return 1
-    } else {
+    }
+    else {
         return num * arguments.callee(num - 1)
     }
 }
@@ -26,7 +28,8 @@ console.log(anotherFactorial2(4))
 let factorial3 = function f(num) {
     if (num <= 1) {
         return 1
-    } else {
+    }
+    else {
         return num * f(num - 1)
     }
 }
