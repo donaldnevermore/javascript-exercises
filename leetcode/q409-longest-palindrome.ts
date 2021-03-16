@@ -1,8 +1,4 @@
-/**
- * @param {string} s
- * @return {number}
- */
-const longestPalindrome = function (s) {
+function longestPalindrome(s: string): number {
     const counter = new Set()
     let sum = 0
 
@@ -18,6 +14,3 @@ const longestPalindrome = function (s) {
 
     return sum + (counter.size > 0 ? 1 : 0)
 }
-
-const r = longestPalindrome("abccccdd")
-console.log(r)

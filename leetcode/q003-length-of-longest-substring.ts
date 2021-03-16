@@ -1,8 +1,4 @@
-/**
- * @param {string} s
- * @return {number}
- */
-const lengthOfLongestSubstring = function (s) {
+export function lengthOfLongestSubstring(s: string): number {
     let curLength = 0
     let maxLength = 0
 
@@ -37,6 +33,3 @@ const lengthOfLongestSubstring = function (s) {
 
     return maxLength
 }
-
-const r = lengthOfLongestSubstring("arabcacfr")
-console.log(r)

@@ -1,9 +1,6 @@
-const {
-    longestPalindrome,
-    longestPalindromeDP,
-} = require("./q005-longest-palindrome")
+import { longestPalindrome, longestPalindromeDP } from "./q005-longest-palindrome"
 
-test("", () => {
+test("longest palindrome", () => {
     const r = longestPalindrome("abbabbcc")
     expect(r).toBe("bbabb")
 
