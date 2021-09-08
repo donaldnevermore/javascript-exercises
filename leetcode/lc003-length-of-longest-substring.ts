@@ -5,7 +5,7 @@ export function lengthOfLongestSubstring(s: string): number {
     const position = new Map()
 
     for (let i = 0; i < s.length; i++) {
-        let prevIndex
+        let prevIndex: number
         if (position.has(s[i])) {
             prevIndex = position.get(s[i])
         }

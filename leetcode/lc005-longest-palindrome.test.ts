@@ -1,4 +1,4 @@
-import { longestPalindrome, longestPalindromeDP } from "./q005-longest-palindrome"
+import { longestPalindrome, longestPalindromeDP } from "./lc005-longest-palindrome"
 
 test("longest palindrome", () => {
     const r = longestPalindrome("abbabbcc")

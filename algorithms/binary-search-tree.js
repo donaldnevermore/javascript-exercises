@@ -44,11 +44,13 @@ function insert(data) {
 }
 
 function inOrder(node) {
-    if (!(node == null)) {
-        inOrder(node.left)
-        console.log(node.show() + "")
-        inOrder(node.right)
+    if (node == null) {
+        return
     }
+
+    inOrder(node.left)
+    console.log(node.show() + "")
+    inOrder(node.right)
 }
 
 let nums = new BST()
