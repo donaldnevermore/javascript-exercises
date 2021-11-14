@@ -1,7 +1,7 @@
 {
     "name": "javascript-exercises",
     "version": "0.1.0",
-    "description": "JavaScript exercises",
+    "description": "JavaScript/TypeScript exercises",
     "main": "index.js",
     "scripts": {
         "test": "jest"
@@ -11,7 +11,7 @@
         "url": "git+https://github.com/donaldnevermore/javascript-exercises.git"
     },
     "author": "donaldnevermore",
-    "license": "MIT",
+    "license": "BSD 3-Clause License",
     "bugs": {
         "url": "https://github.com/donaldnevermore/javascript-exercises/issues"
     },

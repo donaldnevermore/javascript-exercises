@@ -1,17 +1,14 @@
-/**
- * Definition for singly-linked list.
- */
 class ListNode {
     val: number
     next: ListNode | null
 
     constructor(val?: number, next?: ListNode | null) {
-        this.val = (val===undefined ? 0 : val)
-        this.next = (next===undefined ? null : next)
+        this.val = (val === undefined ? 0 : val)
+        this.next = (next === undefined ? null : next)
     }
 }
 
-function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
+export function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
     let carry = 0
     let node = new ListNode(0, null)
     const cursor = node

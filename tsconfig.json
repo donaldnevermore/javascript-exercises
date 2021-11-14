@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
         "module": "esnext",
+        "moduleResolution": "node",
         "target": "es6",
-        "outDir": "dist",
+        "outDir": "./dist",
         "sourceMap": true,
         "strict": true,
         "exactOptionalPropertyTypes": true,
@@ -22,6 +23,6 @@
         "node_modules"
     ],
     "include": [
-        "leetcode/*.ts"
+        "leetcode/**/*.ts",
     ]
 }
