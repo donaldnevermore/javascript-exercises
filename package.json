@@ -4,7 +4,8 @@
     "description": "JavaScript/TypeScript exercises",
     "main": "index.js",
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "lint": "eslint --fix"
     },
     "repository": {
         "type": "git",
