@@ -1,6 +1,6 @@
 import { lengthOfLongestSubstring } from "./length-of-longest-substring"
 
-test("length-of-longest-substring", () => {
-    const r = lengthOfLongestSubstring("arabcacfr")
-    expect(r).toBe(4)
+test("length of longest substring", () => {
+    const n = lengthOfLongestSubstring("arabcacfr")
+    expect(n).toBe(4)
 })

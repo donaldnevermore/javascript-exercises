@@ -1,5 +1,5 @@
 export function longestPalindrome(s: string): string {
-    if (s.length == 0) {
+    if (s.length === 0) {
         return ""
     }
 
@@ -8,7 +8,7 @@ export function longestPalindrome(s: string): string {
 
     const findLongest = (j: number, k: number) => {
         while (j >= 0 && k < s.length && s[j] === s[k]) {
-            const distance=k-j+1
+            const distance = k - j + 1
             if (distance > longest) {
                 longest = distance
                 start = j
@@ -28,7 +28,7 @@ export function longestPalindrome(s: string): string {
 }
 
 export function longestPalindromeDP(s: string): string {
-    if (s.length == 0) {
+    if (s.length === 0) {
         return ""
     }
 
