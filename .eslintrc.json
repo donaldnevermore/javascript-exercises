@@ -17,26 +17,28 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "indent": [
-            "error",
-            4
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
+        "indent": "warn",
+        "linebreak-style": "warn",
+        "quotes": "warn",
         "semi": [
-            "error",
+            "warn",
             "never"
         ],
         "brace-style": [
-            "error",
+            "warn",
             "stroustrup"
         ],
-        "@typescript-eslint/no-explicit-any": "off"
+        "arrow-spacing": "warn",
+        "comma-spacing": "warn",
+        "keyword-spacing": "warn",
+        "space-infix-ops": "warn",
+        "space-unary-ops": "warn",
+        "object-curly-spacing": [
+            "warn",
+            "always"
+        ],
+        "@typescript-eslint/type-annotation-spacing": "warn",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-non-null-assertion": "off"
     }
 }

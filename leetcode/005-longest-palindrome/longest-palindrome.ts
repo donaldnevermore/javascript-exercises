@@ -32,7 +32,7 @@ export function longestPalindromeDP(s: string): string {
         return ""
     }
 
-    const dp: any = []
+    const dp: any[] = []
     for (let i = 0; i < s.length; i++) {
         dp[i] = []
     }

@@ -12,7 +12,7 @@ class MyPromise {
     rejects = []
 
     constructor(executor) {
-        const resolve = (value) => {
+        const resolve = value => {
             if (this.status === PENDING) {
                 this.status = RESOLVED
                 this.value = value
@@ -24,7 +24,7 @@ class MyPromise {
             }
         }
 
-        const reject = (reason) => {
+        const reject = reason => {
             if (this.status === PENDING) {
                 this.status = REJECTED
                 this.reason = reason
@@ -46,19 +46,17 @@ class MyPromise {
 
     then(resolve, reject) {
         if (typeof resolve !== "function") {
-            resolve = (value) => value
+            resolve = value => value
         }
 
         if (typeof reject !== "function") {
-            reject = (reason) => {
-                throw new Error(
-                    reason instanceof Error ? reason.message : reason
-                )
+            reject = reason => {
+                throw new Error(reason instanceof Error ? reason.message : reason)
             }
         }
 
         return new MyPromise((resolveFunc, rejectFunc) => {
-            const fulfilled = (value) => {
+            const fulfilled = value => {
                 try {
                     const res = resolve(value)
                     if (res instanceof MyPromise) {
@@ -73,7 +71,7 @@ class MyPromise {
                 }
             }
 
-            const rejected = (reason) => {
+            const rejected = reason => {
                 try {
                     const res = reject(reason)
                     if (res instanceof MyPromise) {
@@ -118,24 +116,20 @@ class MyPromise {
 
     static all(promises) {
         return new MyPromise((resolve, reject) => {
-            const result = []
-            deepPromise(promises[0], 0, result)
-            resolve(result)
-
-            function deepPromise(promise, index, result) {
+            const deepPromise = (promise, index, result) => {
                 if (index > promises.length - 1) {
                     return
                 }
 
                 if (typeof promise.then === "function") {
                     promise.then(
-                        (value) => {
+                        value => {
                             index++
                             result.push(value)
                             deepPromise(promises[index], index, result)
                         },
-                        (err) => {
-                            reject(err)
+                        reason => {
+                            reject(reason)
                         }
                     )
                 }
@@ -145,6 +139,10 @@ class MyPromise {
                     deepPromise(promises[index], index, result)
                 }
             }
+
+            const result = []
+            deepPromise(promises[0], 0, result)
+            resolve(result)
         })
     }
 
@@ -162,25 +160,21 @@ class MyPromise {
 
     static allSettled(promises) {
         return new MyPromise((resolve, reject) => {
-            const result = []
-            deepPromise(promises[0], 0, result)
-            resolve(result)
-
-            function deepPromise(promise, index, result) {
+            const deepPromise = (promise, index, result) => {
                 if (index > promises.length - 1) {
                     return
                 }
 
                 if (typeof promise.then === "function") {
                     promise.then(
-                        (value) => {
+                        value => {
                             index++
-                            result.push({ status: "fulfilled", value: value })
+                            result.push({ status: "fulfilled", value })
                             deepPromise(promises[index], index, result)
                         },
-                        (err) => {
+                        reason => {
                             index++
-                            result.push({ status: "rejected", value: err })
+                            result.push({ status: "rejected", value: reason })
                             deepPromise(promises[index], index, result)
                         }
                     )
@@ -191,6 +185,10 @@ class MyPromise {
                     deepPromise(promises[index], index, result)
                 }
             }
+
+            const result = []
+            deepPromise(promises[0], 0, result)
+            resolve(result)
         })
     }
 
@@ -199,19 +197,19 @@ class MyPromise {
             let done = false
             for (const promise of promises) {
                 promise.then(
-                    (value) => {
+                    value => {
                         if (done) {
                             return
                         }
                         done = true
                         resolve(value)
                     },
-                    (err) => {
+                    reason => {
                         if (done) {
                             return
                         }
                         done = true
-                        reject(err)
+                        reject(reason)
                     }
                 )
             }
@@ -224,7 +222,7 @@ const myPromise = new MyPromise((resolve, reject) => {
     resolve("Promise sync")
 })
 
-myPromise.then((res) => {
+myPromise.then(res => {
     console.log(res)
 })
 
@@ -235,7 +233,7 @@ const myPromise2 = new MyPromise((resolve, reject) => {
     }, 500)
 })
 
-myPromise2.then((res) => {
+myPromise2.then(res => {
     console.log(res)
 })
 
