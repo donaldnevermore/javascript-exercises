@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "importHelpers": true,
         "target": "es6",
         "lib": [
             "dom",
@@ -25,6 +26,6 @@
     ],
     "include": [
         "leetcode/**/*.ts",
-        "js-examples/**/*.ts"
+        "examples/**/*.ts"
     ]
 }

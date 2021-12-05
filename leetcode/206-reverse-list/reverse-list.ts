@@ -1,4 +1,4 @@
-import { ListNode } from "../shared"
+import { ListNode } from "../list-node"
 
 function reverseList(head: ListNode | null): ListNode | null {
     let prev: ListNode | null = null
