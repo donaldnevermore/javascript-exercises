@@ -37,6 +37,8 @@
             "warn",
             "always"
         ],
+        "semi-spacing": "warn",
+        "space-before-blocks": "warn",
         "@typescript-eslint/type-annotation-spacing": "warn",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-non-null-assertion": "off"
