@@ -1,15 +1,12 @@
-export function threeSum(nums: number[]): number[][] {
+export function threeSumClosest(nums: number[], target: number): number {
     if (nums.length < 3) {
-        return []
+        throw new Error("Invalid argument.")
     }
 
     nums.sort((a, b) => a - b)
-    const arr: number[][] = []
+    let closest: number | null = null
 
     for (let i = 0; i < nums.length - 2; i++) {
-        if (nums[i] > 0) {
-            break
-        }
         if (i > 0 && nums[i] === nums[i - 1]) {
             continue
         }
@@ -19,25 +16,22 @@ export function threeSum(nums: number[]): number[][] {
 
         while (left < right) {
             const sum = nums[i] + nums[left] + nums[right]
-            if (sum < 0) {
+            if (sum === target) {
+                return sum
+            }
+
+            if (closest === null || Math.abs(sum - target) < Math.abs(closest - target)) {
+                closest = sum
+            }
+
+            if (sum < target) {
                 left++
                 while (left < right && nums[left] === nums[left - 1]) {
                     left++
-                }
-            }
-            else if (sum > 0) {
-                right--
-                while (left < right && nums[right] === nums[right + 1]) {
-                    right--
                 }
             }
             else {
-                arr.push([nums[i], nums[left], nums[right]])
-                left++
                 right--
-                while (left < right && nums[left] === nums[left - 1]) {
-                    left++
-                }
                 while (left < right && nums[right] === nums[right + 1]) {
                     right--
                 }
@@ -45,5 +39,5 @@ export function threeSum(nums: number[]): number[][] {
         }
     }
 
-    return arr
+    return closest as number
 }
