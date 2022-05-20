@@ -1,14 +1,13 @@
 // A better implementation.
 
 function object(o) {
-    function F() {}
-
+    const F = function () {}
     F.prototype = o
     return new F()
 }
 
 function inheritPrototype(subType, superType) {
-    let prototype = object(superType.prototype)
+    const prototype = object(superType.prototype)
     prototype.constructor = subType
     subType.prototype = prototype
 }
@@ -34,6 +33,6 @@ SubType.prototype.sayAge = function () {
     console.log(this.age)
 }
 
-let instance = new SubType("Nicholas", 29)
+const instance = new SubType("Nicholas", 29)
 instance.sayName()
 instance.sayAge()

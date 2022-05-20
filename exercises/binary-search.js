@@ -11,7 +11,7 @@ function binarySearch(arr, num) {
     let high = arr.length - 1
 
     while (low <= high) {
-        let mid = low + Math.floor((high - low) / 2)
+        const mid = low + Math.floor((high - low) / 2)
         if (arr[mid] < num) {
             low = mid + 1
         }
@@ -26,6 +26,6 @@ function binarySearch(arr, num) {
     return -1
 }
 
-let arr1 = [1, 2, 3, 4, 5]
+const arr1 = [1, 2, 3, 4, 5]
 console.log(binarySearch(arr1, 3))
 console.log(binarySearch([], 3))

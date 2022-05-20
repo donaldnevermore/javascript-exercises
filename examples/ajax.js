@@ -1,4 +1,4 @@
-let xhr = new XMLHttpRequest()
+const xhr = new XMLHttpRequest()
 
 xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
@@ -13,5 +13,4 @@ xhr.onreadystatechange = function () {
 
 // 启用请求以备发送
 xhr.open("get", "example.txt", true)
-
 xhr.send(null)

@@ -24,7 +24,7 @@ export function longestPalindrome(s: string): string {
         findLongest(i, i + 1)
     }
 
-    return s.substr(start, longest)
+    return s.substring(start, start + longest)
 }
 
 export function longestPalindromeDP(s: string): string {
@@ -60,5 +60,5 @@ export function longestPalindromeDP(s: string): string {
         }
     }
 
-    return s.substr(start, longest)
+    return s.substring(start, start + longest)
 }

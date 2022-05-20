@@ -1,22 +1,21 @@
 function object(o) {
-    function F() {}
-
+    const F = function () {}
     F.prototype = o
     return new F()
 }
 
 function createAnother(original) {
-    let clone = object(original)
+    const clone = object(original)
     clone.sayHi = function () {
-        console.log("hi")
+        console.log("Hi")
     }
     return clone
 }
 
-let person = {
+const person = {
     name: "Nicholas",
-    friends: ["Shelby", "Court", "Van"],
+    friends: ["Shelby", "Court", "Van"]
 }
 
-let anotherPerson = createAnother(person)
-anotherPerson.sayHi() // "hi"
+const anotherPerson = createAnother(person)
+anotherPerson.sayHi() // "Hi"

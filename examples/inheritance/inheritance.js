@@ -14,10 +14,10 @@ SubType.prototype = new SuperType()
 
 // not working
 // SubType.prototype = {
-//     getSubValue: function () {
+//     getSubValue: function() {
 //         return this.subproperty;
 //     },
-//     someOtherMethod: function () {
+//     someOtherMethod: function() {
 //         return this.subproperty;
 //     },
 // };
@@ -49,15 +49,15 @@ function SuperType2() {
     this.colors = ["red", "blue", "green"]
 }
 
-function SubType() {}
+function SubType2() {}
 
-SubType.prototype = new SuperType2()
+SubType2.prototype = new SuperType2()
 
-let instance4 = new SubType()
-instance1.colors.push("black")
-console.log(instance1.colors) // ['red', 'blue', 'green', 'black']
+let instance4 = new SubType2()
+instance4.colors.push("black")
+console.log(instance4.colors) // ['red', 'blue', 'green', 'black']
 
-let instance5 = new SubType()
-console.log(instance2.colors) // ['red', 'blue', 'green', 'black']
+let instance5 = new SubType2()
+console.log(instance5.colors) // ['red', 'blue', 'green', 'black']
 
-console.log(instance1.colors === instance2.colors)
+console.log(instance4.colors === instance5.colors) // true
