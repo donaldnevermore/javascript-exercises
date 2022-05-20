@@ -1,31 +1,21 @@
 {
     "compilerOptions": {
-        "importHelpers": true,
-        "target": "es6",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "esnext"
-        ],
-        "allowJs": true,
-        "skipLibCheck": true,
+        "isolatedModules": false,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
-        "noFallthroughCasesInSwitch": true,
         "module": "esnext",
         "moduleResolution": "node",
         "resolveJsonModule": true,
-        "isolatedModules": true,
+        "target": "es6",
+        "allowJs": true,
+        "skipLibCheck": true,
+        "importHelpers": true,
+        "lib": ["dom", "dom.iterable", "esnext"],
         "noEmit": true,
         "jsx": "react-jsx"
     },
-    "exclude": [
-        "node_modules"
-    ],
-    "include": [
-        "leetcode/**/*.ts",
-        "examples/**/*.ts"
-    ]
+    "exclude": ["node_modules"],
+    "include": ["**/*.ts"]
 }

@@ -4,39 +4,36 @@
         "es2021": true,
         "node": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended"
-    ],
+    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "ecmaVersion": "latest",
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2021,
         "sourceType": "module"
     },
-    "plugins": [
-        "@typescript-eslint"
-    ],
+    "plugins": ["react", "@typescript-eslint"],
     "rules": {
         "indent": "warn",
+        "brace-style": ["warn", "stroustrup"],
         "linebreak-style": "warn",
         "quotes": "warn",
-        "semi": [
+        "space-before-function-paren": [
             "warn",
-            "never"
-        ],
-        "brace-style": [
-            "warn",
-            "stroustrup"
+            {
+                "anonymous": "always",
+                "named": "never",
+                "asyncArrow": "never"
+            }
         ],
         "arrow-spacing": "warn",
         "comma-spacing": "warn",
         "keyword-spacing": "warn",
+        "object-curly-spacing": ["warn", "always"],
         "space-infix-ops": "warn",
         "space-unary-ops": "warn",
-        "object-curly-spacing": [
-            "warn",
-            "always"
-        ],
+        "semi": ["warn", "never"],
         "semi-spacing": "warn",
         "space-before-blocks": "warn",
         "@typescript-eslint/type-annotation-spacing": "warn",
