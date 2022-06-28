@@ -1,6 +1,6 @@
-const http = require("http")
-const url = require("url")
-const path = require("path")
+import http from "http"
+import url from "url"
+import path from "path"
 
 const server = http.createServer((req, res) => {
     console.log(req.method + ":" + req.url)

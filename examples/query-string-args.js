@@ -1,20 +1,12 @@
-/**
- * 解析查询字符串
- */
 function getQueryStringArgs() {
-    let qs = location.search.length > 0 ? loction.search.substring(1) : ""
-    let args = {}
-    let items = qs.length ? qs.split("&") : []
-    let item = null
-    let name = null
-    let value = null
-    let i = 0
-    let len = items.length
+    const qs = location.search.length > 0 ? location.search.substring(1) : ""
+    const args = {}
+    const items = qs.length ? qs.split("&") : []
 
-    for (let i = 0; i < len; i++) {
-        item = items[i].split("=")
-        name = decodeURIComponent(item[0])
-        value = decodeURIComponent(item[1])
+    for (let i = 0; i < items.length; i++) {
+        const item = items[i].split("=")
+        const name = decodeURIComponent(item[0])
+        const value = decodeURIComponent(item[1])
         if (name.length) {
             args[name] = value
         }
@@ -22,18 +14,11 @@ function getQueryStringArgs() {
     return args
 }
 
-/**
- * 拼接查询字符串
- * @param {Object} obj
- */
 function setQueryStringArgs(obj) {
-    let value = null
-    let name = null
     let query = ""
-    for (let name of Object.keys(obj)) {
-        value = obj[name]
-        query +=
-            encodeURIComponent(name) + "=" + encodeURIComponent(value) + "&"
+    for (const name of Object.keys(obj)) {
+        const value = obj[name]
+        query += encodeURIComponent(name) + "=" + encodeURIComponent(value) + "&"
     }
     return query.length ? query.substring(0, query.length - 1) : ""
 }

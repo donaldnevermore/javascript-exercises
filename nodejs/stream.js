@@ -1,16 +1,17 @@
-const fs = require("fs")
+import fs from "fs"
+
 const rs = fs.createReadStream("sample.txt", "utf-8")
 
-rs.on("data", function (chunk) {
+rs.on("data",  (chunk) => {
     console.log("DATA:")
     console.log(chunk)
 })
 
-rs.on("end", function () {
+rs.on("end",  () => {
     console.log("END")
 })
 
-rs.on("error", function (err) {
+rs.on("error",  (err) => {
     console.log("ERROR:" + err)
 })
 
@@ -20,8 +21,8 @@ ws1.write("END.")
 ws1.end()
 
 const ws2 = fs.createWriteStream("output2.txt")
-ws2.write(new Buffer("Writing binary data to stream\n", "utf-8"))
-ws2.write(new Buffer("End.", "utf-8"))
+ws2.write(Buffer.from("Writing binary data to stream\n", "utf-8"))
+ws2.write(Buffer.from("End.", "utf-8"))
 ws2.end()
 
 const rs2 = fs.createReadStream("sample.txt")

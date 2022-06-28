@@ -29,10 +29,10 @@ function compare(value1, value2) {
 
 let result = compare(5, 10)
 
-let compare2 = createFunction("name")
+let compare2 = createComparisonFunction("name")
 let result2 = compare2({ name: "Nicholas" }, { name: "Greg" })
 
-let compareNames = createFunction("name")
+let compareNames = createComparisonFunction("name")
 
 let result3 = compareNames({ name: "Nicholas" }, { name: "Greg" })
 

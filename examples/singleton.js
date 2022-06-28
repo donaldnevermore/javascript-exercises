@@ -1,12 +1,8 @@
-/**
- * 单例模式
- * 保证一个类仅有一个实例，
- * 并且提供一个访问它的全局访问点。
- */
 class Singleton {
+    instance = null
+
     constructor(name) {
         this.name = name
-        this.instance = null
     }
 
     getName() {
@@ -21,8 +17,8 @@ class Singleton {
     }
 }
 
-let a = Singleton.getInstance("sven1")
-let b = Singleton.getInstance("sven2")
+const a = Singleton.getInstance("sven1")
+const b = Singleton.getInstance("sven2")
 
 console.log(a === b)
 a.getName()
