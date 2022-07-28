@@ -8,7 +8,6 @@ function myAtoi(s: string): number {
     return auto.sign * auto.sum
 }
 
-
 class Automaton {
     private table: {[index: string]: string[]} = {
         "start": ["start", "signed", "in_number", "end"],
@@ -17,10 +16,10 @@ class Automaton {
         "end": ["end", "end", "end", "end"],
     }
     private state = "start"
-    sign = 1
-    sum = 0
+    public sign = 1
+    public sum = 0
 
-    get(ch: string) {
+    public get(ch: string) {
         const col = this.getCol(ch)
         this.state = this.table[this.state][col]
 
