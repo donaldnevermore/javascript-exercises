@@ -1,4 +1,3 @@
-
 function getGlobal() {
     if (typeof globalThis !== "undefined") {
         return globalThis

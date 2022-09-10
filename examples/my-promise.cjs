@@ -6,7 +6,6 @@ const STATUS = {
 
 const isFunction = ctor => typeof ctor === "function"
 const isNativeFunction = ctor => isFunction(ctor) && /native code/.test(ctor.toString())
-
 const isIterable = ctor => ctor != null && isFunction(ctor[Symbol.iterator])
 
 const nextTaskQueue = cb => {
