@@ -1,21 +1,21 @@
-export function longestPalindrome(s: string): string {
-    if (s.length === 0) {
-        return ""
+function longestPalindrome(s: string): string {
+    if (s.length < 2) {
+        return s
     }
 
     let longest = 1
-    let start = 0
+    let position = 0
 
-    const findLongest = (j: number, k: number) => {
-        while (j >= 0 && k < s.length && s[j] === s[k]) {
-            const distance = k - j + 1
+    const findLongest = (left: number, right: number) => {
+        while (left >= 0 && right < s.length && s[left] === s[right]) {
+            const distance = right - left + 1
             if (distance > longest) {
                 longest = distance
-                start = j
+                position = left
             }
 
-            j--
-            k++
+            left--
+            right++
         }
     }
 
@@ -24,17 +24,18 @@ export function longestPalindrome(s: string): string {
         findLongest(i, i + 1)
     }
 
-    return s.substring(start, start + longest)
+    return s.slice(position, position + longest)
 }
 
-export function longestPalindromeDP(s: string): string {
-    if (s.length === 0) {
-        return ""
+// maybe slower...
+function longestPalindromeDP(s: string): string {
+    if (s.length < 2) {
+        return s
     }
 
-    const dp: any[] = []
-    for (let i = 0; i < s.length; i++) {
-        dp[i] = []
+    const dp: boolean[][] = new Array(s.length)
+    for (let i = 0; i < dp.length; i++) {
+        dp[i] = new Array(s.length).fill(false)
     }
 
     let longest = 1
@@ -60,5 +61,5 @@ export function longestPalindromeDP(s: string): string {
         }
     }
 
-    return s.substring(start, start + longest)
+    return s.slice(start, start + longest)
 }

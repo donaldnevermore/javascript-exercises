@@ -1,4 +1,4 @@
-import { ListNode } from "../list-node"
+import { ListNode } from "../list-node.js"
 
 function mergeTwoLists(list1: ListNode | null, list2: ListNode | null): ListNode | null {
     if (list1 === null) {
