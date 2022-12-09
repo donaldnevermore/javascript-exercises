@@ -1,4 +1,4 @@
-import { ListNode } from "../list-node"
+import { ListNode } from "../list-node.js"
 
 function reverseList(head: ListNode | null): ListNode | null {
     let prev: ListNode | null = null

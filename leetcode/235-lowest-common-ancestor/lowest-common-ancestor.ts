@@ -1,4 +1,4 @@
-import { TreeNode } from "../tree-node"
+import { TreeNode } from "../tree-node.js"
 
 export function lowestCommonAncestor(root: TreeNode | null, p: TreeNode | null,
     q: TreeNode | null): TreeNode | null {
