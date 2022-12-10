@@ -6,7 +6,7 @@
  * 最佳情况：输入数组按升序排列，T(n) = O(n)
  * 最坏情况：输入数组按降序排列，T(n) = O(n^2)
  */
-function insertionSort(arr: number[]): void {
+function insertionSort(arr: number[]) {
     const n = arr.length
     for (let i = 1; i < n; i++) {
         for (let j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
@@ -15,7 +15,7 @@ function insertionSort(arr: number[]): void {
     }
 }
 
-function insertionSort2(arr: number[]): void {
+function insertionSort2(arr: number[]) {
     const n = arr.length
     let min = 0
     for (let k = 1; k < n; k++) {
@@ -32,7 +32,7 @@ function insertionSort2(arr: number[]): void {
     }
 }
 
-function insertionSort3(arr: number[]): void {
+function insertionSort3(arr: number[]) {
     const n = arr.length
 
     for (let i = 1; i < n; i++) {
@@ -46,7 +46,7 @@ function insertionSort3(arr: number[]): void {
     }
 }
 
-function insertionSort4(arr: number[]): void {
+function insertionSort4(arr: number[]) {
     const n = arr.length
     let min = 0
     for (let k = 1; k < n; k++) {
@@ -67,6 +67,6 @@ function insertionSort4(arr: number[]): void {
     }
 }
 
-const a = [3, 5, 2, 1, 8, 9, 7, 0]
+const a = [3, 5, 2, 1, 8, 9, 7]
 insertionSort4(a)
 console.log(a)

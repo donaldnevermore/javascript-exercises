@@ -6,7 +6,7 @@
  * 最佳情况：T(n) = O(n^2)
  * 最差情况：T(n) = O(n^2)
  */
-function selectionSort(arr: number[]): void {
+function selectionSort(arr: number[]) {
     const n = arr.length
     for (let i = 0; i < n; i++) {
         let min = i
