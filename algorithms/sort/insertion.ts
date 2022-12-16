@@ -1,3 +1,5 @@
+import { exch } from "./exch.js"
+
 /**
  * 插入排序
  * 稳定
@@ -10,7 +12,7 @@ function insertionSort(arr: number[]) {
     const n = arr.length
     for (let i = 1; i < n; i++) {
         for (let j = i; j > 0 && arr[j] < arr[j - 1]; j--) {
-            [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]]
+            exch(arr, j, j - 1)
         }
     }
 }
@@ -23,11 +25,11 @@ function insertionSort2(arr: number[]) {
             min = k
         }
     }
-    [arr[0], arr[min]] = [arr[min], arr[0]]
+    exch(arr, 0, min)
 
     for (let i = 1; i < n; i++) {
         for (let j = i; arr[j] < arr[j - 1]; j--) {
-            [arr[j], arr[j - 1]] = [arr[j - 1], arr[j]]
+            exch(arr, j, j - 1)
         }
     }
 }
@@ -54,7 +56,7 @@ function insertionSort4(arr: number[]) {
             min = k
         }
     }
-    [arr[0], arr[min]] = [arr[min], arr[0]]
+    exch(arr, 0, min)
 
     for (let i = 1; i < n; i++) {
         const temp = arr[i]

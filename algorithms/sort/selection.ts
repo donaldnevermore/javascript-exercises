@@ -1,3 +1,5 @@
+import { exch } from "./exch.js"
+
 /**
  * 选择排序
  * 不稳定
@@ -16,6 +18,7 @@ function selectionSort(arr: number[]) {
                 min = j
             }
         }
-        [arr[i], arr[min]] = [arr[min], arr[i]]
+
+        exch(arr, i, min)
     }
 }
