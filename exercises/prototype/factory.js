@@ -50,12 +50,12 @@ let o = {}
 Person.call(o, "Kristen", 25, "Nurse")
 o.sayName() // "Kristen
 
-let person5 = new Person("Nicholas", 29, "Software Engineer")
+// let person5 = new Person("Nicholas", 29, "Software Engineer")
 let person6 = new Person("Greg", 27, "Doctor")
 // Constructor problem
 console.log(person5.sayName === person6.sayName) // false
 
-function Person(name, age, job) {
+function Person2(name, age, job) {
     this.name = name
     this.age = age
     this.job = job
@@ -66,7 +66,7 @@ function sayName() {
     console.log(this.name)
 }
 
-let p1 = new Person("Nicholas", 29, "Software Engineer")
-let p2 = new Person("Greg", 27, "Doctor")
+let p1 = new Person2("Nicholas", 29, "Software Engineer")
+let p2 = new Person2("Greg", 27, "Doctor")
 
 console.log(p1.sayName === p2.sayName) // true

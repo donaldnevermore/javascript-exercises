@@ -19,7 +19,7 @@ class AsyncPolling {
     query(num, interval, limitTime, method, params) {
         let timer = null
         if (num >= 1) {
-            return new Promise((resolve, reject) => {
+            return new Promise((_, reject) => {
                 method(params)
                     .then(
                         (res) => {

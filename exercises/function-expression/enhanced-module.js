@@ -1,3 +1,7 @@
+class CustomType {}
+
+class BaseComponent {}
+
 let singleton = (function () {
     let privateVariable = 10
 
