@@ -9,21 +9,18 @@ const isNativeFunction = ctor => isFunction(ctor) && /native code/.test(ctor.toS
 const isIterable = ctor => ctor != null && isFunction(ctor[Symbol.iterator])
 
 const nextTaskQueue = cb => {
-    if (typeof queueMicrotask !== "undefined" && isNativeFunction(queueMicrotask)) {
+    if (queueMicrotask !== undefined && isNativeFunction(queueMicrotask)) {
         queueMicrotask(cb)
-    }
-    else if (typeof MutationObserver !== "undefined" && (isNativeFunction(MutationObserver) ||
+    } else if (MutationObserver !== undefined && (isNativeFunction(MutationObserver) ||
         MutationObserver.toString() === "[object MutationObserverConstructor]")) {
         const observer = new MutationObserver(cb)
         const node = document.createTextNode("1")
 
         observer.observe(node, { characterData: true })
         node.data = "2"
-    }
-    else if (typeof process !== "undefined" && isFunction(process.nextTick)) {
+    } else if (process !== undefined && isFunction(process.nextTick)) {
         process.nextTick(cb)
-    }
-    else {
+    } else {
         setTimeout(() => {
             cb()
         }, 0)
@@ -56,19 +53,16 @@ const handlePromise = (newPromise, result, resolve, reject) => {
                         })
                     }
                 })
-            }
-            else {
+            } else {
                 resolve(result)
             }
-        }
-        catch (err) {
+        } catch (err) {
             if (!called) {
                 called = true
                 reject(err)
             }
         }
-    }
-    else {
+    } else {
         resolve(result)
     }
 }
@@ -86,8 +80,7 @@ class MyPromise {
             if (this.state === STATUS.PENDING) {
                 try {
                     handlePromise(this, value, resolveCore, reject)
-                }
-                catch (err) {
+                } catch (err) {
                     reject(err)
                 }
             }
@@ -121,8 +114,7 @@ class MyPromise {
 
         try {
             executor(resolve, reject)
-        }
-        catch (err) {
+        } catch (err) {
             reject(err)
         }
     }
@@ -143,8 +135,7 @@ class MyPromise {
                 try {
                     const result = onFulfilled(value)
                     handlePromise(newPromise, result, resolve, reject)
-                }
-                catch (e) {
+                } catch (e) {
                     reject(e)
                 }
             }
@@ -153,8 +144,7 @@ class MyPromise {
                 try {
                     const result = onRejected(reason)
                     handlePromise(newPromise, result, resolve, reject)
-                }
-                catch (err) {
+                } catch (err) {
                     reject(err)
                 }
             }
@@ -224,8 +214,7 @@ class MyPromise {
 
             if (len === 0) {
                 resolve(promiseList)
-            }
-            else {
+            } else {
                 promiseList.forEach((promise, index) => {
                     MyPromise.resolve(promise).then(value => {
                         resolvedCount++
@@ -255,8 +244,7 @@ class MyPromise {
 
             if (len === 0) {
                 resolve(promiseList)
-            }
-            else {
+            } else {
                 promiseList.forEach((promise, index) => {
                     MyPromise.resolve(promise).then(value => {
                         settledCount++
@@ -308,8 +296,7 @@ class MyPromise {
 
             if (len === 0) {
                 reject(new AggregateError(errors, "All promises were rejected"))
-            }
-            else {
+            } else {
                 promiseList.forEach(promise => {
                     MyPromise.resolve(promise).then(value => {
                         resolve(value)

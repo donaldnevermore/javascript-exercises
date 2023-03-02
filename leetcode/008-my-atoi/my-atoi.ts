@@ -34,8 +34,7 @@ class Automaton {
             this.sum = this.sum * 10 + n
             if (this.sign === 1) {
                 this.sum = Math.min(this.sum, 2 ** 31 - 1)
-            }
-            else {
+            } else {
                 this.sum = Math.min(this.sum, 2 ** 31)
             }
             break

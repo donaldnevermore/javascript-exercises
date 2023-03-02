@@ -4,7 +4,6 @@
 /.vs
 
 /out
-/xxx
 
 # Dependencies
 /node_modules
