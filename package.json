@@ -5,7 +5,8 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "lint": "eslint --fix"
+        "lint": "eslint --fix",
+        "test": "promises-aplus-tests"
     },
     "repository": {
         "type": "git",
@@ -20,6 +21,7 @@
     "dependencies": {
         "@types/node": "^18.14.4",
         "prettier": "^2.8.4",
+        "promises-aplus-tests": "^2.1.2",
         "typescript": "^4.9.5"
     },
     "devDependencies": {

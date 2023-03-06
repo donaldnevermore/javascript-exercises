@@ -4,51 +4,34 @@ const STATUS = {
     REJECTED: "rejected"
 }
 
-const isFunction = (value) => typeof value === "function"
+type Resolve<T> = (value?: T | PromiseLike<T>) => void;
+type Reject = (reason?: any) => void;
+type Executor<T> = (resolve?: Resolve<T>, reject?: Reject) => void;
+type OnFulfilled<T, TResult1> = ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null;
+type OnRejected<TResult2> = ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null;
+type OnFinally = (() => void) | undefined | null;
 
-/*
-const isIterable = (value) => value != null && isFunction(value[Symbol.iterator])
-const isNativeFunction = ctor => isFunction(ctor) && /native code/.test(ctor.toString())
-const nextTaskQueue = cb => {
-    if (queueMicrotask !== undefined && isNativeFunction(queueMicrotask)) {
-        queueMicrotask(cb)
-    } else if (process !== undefined && isFunction(process.nextTick)) {
-        process.nextTick(cb)
-    } else if (MutationObserver !== undefined && (isNativeFunction(MutationObserver) ||
-        MutationObserver.toString() === "[object MutationObserverConstructor]")) {
-        const observer = new MutationObserver(cb)
-        const node = document.createTextNode("1")
+// eslint-disable-next-line @typescript-eslint/ban-types
+const isFunction = (value: any): value is Function => typeof value === "function"
 
-        observer.observe(node, { characterData: true })
-        node.data = "2"
-    } else {
-        setTimeout(() => {
-            cb()
-        }, 0)
-    }
-}
-*/
+class MyPromise<T> {
+    public state = STATUS.PENDING
+    public result!: T
+    private onFulfilledCallbacks: Resolve<T>[] = []
+    private onRejectedCallbacks: Reject[] = []
 
-class MyPromise {
-    state = STATUS.PENDING
-    result
-
-    // Resolve & reject callback queues.
-    onFulfilledCallbacks = []
-    onRejectedCallbacks = []
-
-    constructor(executor) {
-        const resolve = (result) => {
+    constructor(executor: Executor<T>) {
+        const resolve: Resolve<T> = (result) => {
             if (this.state === STATUS.PENDING) {
                 queueMicrotask(() => {
                     this.state = STATUS.FULFILLED
-                    this.result = result
+                    this.result = result as T
                     this.onFulfilledCallbacks.forEach((callback) => callback(result))
                 })
             }
         }
 
-        const reject = (reason) => {
+        const reject: Reject = (reason) => {
             if (this.state === STATUS.PENDING) {
                 queueMicrotask(() => {
                     this.state = STATUS.REJECTED
@@ -65,19 +48,23 @@ class MyPromise {
         }
     }
 
-    then(onFulfilled, onRejected) {
+
+
+    public then<TResult1 = T, TResult2 = never>(
+        onFulfilled?: OnFulfilled<T, TResult1>, onRejected?: OnRejected<TResult2>
+    ): MyPromise<TResult1 | TResult2> {
         onFulfilled = isFunction(onFulfilled) ? onFulfilled : (value) => {
-            return value
+            return value as any
         }
         onRejected = isFunction(onRejected) ? onRejected : (reason) => {
             throw reason
         }
 
-        const promise2 = new MyPromise((resolve, reject) => {
+        const promise2 = new MyPromise<TResult1 | TResult2>((resolve, reject) => {
             const fulfilled = () => {
                 try {
                     const x = onFulfilled?.(this.result)
-                    resolvePromise(promise2, x, resolve, reject)
+                    resolvePromise(promise2, x!, resolve, reject)
                 } catch (err) {
                     reject?.(err)
                 }
@@ -86,7 +73,7 @@ class MyPromise {
             const rejected = () => {
                 try {
                     const x = onRejected?.(this.result)
-                    resolvePromise(promise2, x, resolve, reject)
+                    resolvePromise(promise2, x!, resolve, reject)
                 } catch (err) {
                     reject?.(err)
                 }
@@ -115,129 +102,155 @@ class MyPromise {
         return promise2
     }
 
-    static resolve(value) {
+    public static resolve<T>(value?: T | PromiseLike<T>): MyPromise<T> {
         if (value instanceof MyPromise) {
             return value
         }
+
         return new MyPromise((resolve) => {
             resolve?.(value)
         })
     }
 
-    static reject(reason) {
+    public static reject<T=never>(reason?: any): MyPromise<T> {
         return new MyPromise((_, reject) => {
             reject?.(reason)
         })
     }
 
-    catch(onRejected) {
+    public catch<TResult=never>(onRejected: OnRejected<TResult>): MyPromise<T | TResult> {
         return this.then(null, onRejected)
     }
 
-    finally(onFinally) {
+    public finally(onFinally?: OnFinally): MyPromise<T> {
         const final = isFunction(onFinally) ? onFinally() : onFinally
-        return this.then((value) => MyPromise.resolve(final).then(() => {
-            return value
-        }), (reason) => MyPromise.resolve(final).then(() => {
-            throw reason
-        }))
+        return this.then(
+            (value) => MyPromise.resolve(final).then(() => {
+                return value
+            }),
+            (reason) => MyPromise.resolve(final).then(() => {
+                throw reason
+            })
+        )
     }
 
-    static all(promises) {
+    public static all<T>(promises: T[]): MyPromise<T[]> {
         return new MyPromise((resolve, reject) => {
             if (Array.isArray(promises)) {
-                const results = []
+                const results: T[] = []
                 let count = 0
                 if (promises.length === 0) {
                     return resolve?.(promises)
                 }
+
                 promises.forEach((item, index) => {
-                    MyPromise.resolve(item).then((value) => {
-                        count++
-                        results[index] = value
-                        if (count === promises.length) {
-                            resolve?.(results)
+                    MyPromise.resolve(item).then(
+                        (value) => {
+                            count++
+                            results[index] = value
+                            if (count === promises.length) {
+                                resolve?.(results)
+                            }
+                        },
+                        (reason) => {
+                            reject?.(reason)
                         }
-                    }, (reason) => {
-                        reject?.(reason)
-                    })
+                    )
                 })
             } else {
-                return reject?.(new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`))
+                return reject?.(
+                    new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`)
+                )
             }
         })
     }
 
-    static race(promises) {
+    public static race<T>(promises: T[]): MyPromise<T extends PromiseLike<infer U> ? U : T> {
         return new MyPromise((resolve, reject) => {
             if (Array.isArray(promises)) {
                 if (promises.length !== 0) {
                     promises.forEach((item) => {
-                        MyPromise.resolve(item).then(resolve, reject)
+                        MyPromise.resolve(item).then(resolve as any, reject)
                     })
                 }
             } else {
-                return reject?.(new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`))
+                return reject?.(
+                    new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`)
+                )
             }
         })
     }
 
-    static allSettled(promises) {
+    public static allSettled<T>(promises: T[]): MyPromise<PromiseSettledResult<Awaited<T>>[]> {
         return new MyPromise((resolve, reject) => {
             if (Array.isArray(promises)) {
-                const results = []
+                const results: any[] = []
                 let count = 0
                 if (promises.length === 0) {
-                    return resolve?.(promises)
+                    return resolve?.(promises as any)
                 }
+
                 promises.forEach((item, index) => {
-                    MyPromise.resolve(item).then((value) => {
-                        count++
-                        results[index] = { status: STATUS.FULFILLED, value }
-                        if (count === promises.length) {
-                            resolve?.(results)
+                    MyPromise.resolve(item).then(
+                        (value) => {
+                            count++
+                            results[index] = { status: STATUS.FULFILLED, value }
+                            if (count === promises.length) {
+                                resolve?.(results)
+                            }
+                        },
+                        (reason) => {
+                            count++
+                            results[index] = { status: STATUS.REJECTED, reason }
+                            if (count === promises.length) {
+                                resolve?.(results)
+                            }
                         }
-                    }, (reason) => {
-                        count++
-                        results[index] = { status: STATUS.REJECTED, reason }
-                        if (count === promises.length) {
-                            resolve?.(results)
-                        }
-                    })
+                    )
                 })
             } else {
-                return reject?.(new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`))
+                return reject?.(
+                    new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`)
+                )
             }
         })
     }
 
-    static any(promises) {
+    public static any<T>(promises: (T | PromiseLike<T>)[]): MyPromise<T> {
         return new MyPromise((resolve, reject) => {
             if (Array.isArray(promises)) {
-                const errors = []
+                const errors: any[] = []
                 let count = 0
                 if (promises.length === 0) {
                     return reject?.(new AggregateError(errors, "All promises were rejected"))
                 }
+
                 promises.forEach((item) => {
-                    MyPromise.resolve(item).then((value) => {
-                        resolve?.(value)
-                    }, (reason) => {
-                        count++
-                        errors.push(reason)
-                        if (count === promises.length) {
-                            reject?.(new AggregateError(errors, "All promises were rejected"))
+                    MyPromise.resolve(item).then(
+                        (value) => {
+                            resolve?.(value)
+                        },
+                        (reason) => {
+                            count++
+                            errors.push(reason)
+                            if (count === promises.length) {
+                                reject?.(new AggregateError(errors, "All promises were rejected"))
+                            }
                         }
-                    })
+                    )
                 })
             } else {
-                return reject?.(new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`))
+                return reject?.(
+                    new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`)
+                )
             }
         })
     }
 }
 
-const resolvePromise = (promise2, x, resolve, reject) => {
+const resolvePromise = <T>(
+    promise2: MyPromise<T>, x: T | PromiseLike<T>, resolve?: Resolve<T>, reject?: Reject
+) => {
     if (promise2 === x) {
         return reject?.(new TypeError("Chaining cycle detected."))
     }
@@ -259,12 +272,13 @@ const resolvePromise = (promise2, x, resolve, reject) => {
             break
         }
     } else if ((typeof x === "object" && x !== null) || isFunction(x)) {
-        let then
+        let then: PromiseLike<T>["then"]
         try {
-            then = x.then
+            then = (x as PromiseLike<T>).then
         } catch (err) {
             return reject?.(err)
         }
+
         if (isFunction(then)) {
             let called = false
             try {
@@ -274,7 +288,8 @@ const resolvePromise = (promise2, x, resolve, reject) => {
                     }
                     called = true
                     resolvePromise(promise2, value, resolve, reject)
-                }, (reason) => {
+                },
+                (reason) => {
                     if (called) {
                         return
                     }
@@ -295,14 +310,3 @@ const resolvePromise = (promise2, x, resolve, reject) => {
         resolve?.(x)
     }
 }
-
-MyPromise.deferred =  () => {
-    const dfd = {}
-    dfd.promise = new MyPromise((resolve, reject) => {
-        dfd.resolve = resolve
-        dfd.reject = reject
-    })
-    return dfd
-}
-
-module.exports = MyPromise
