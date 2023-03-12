@@ -17,12 +17,31 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        indent: ["warn", 4, { SwitchCase: 0 }],
-        semi: ["warn", "never"],
-        "brace-style": ["warn", "1tbs"],
-        quotes: ["warn", "double"],
         "linebreak-style": ["warn", "unix"],
-        "space-before-function-paren": [
+        "arrow-spacing": "warn",
+        "space-unary-ops": "warn",
+        "semi-spacing": "warn",
+        "arrow-parens": "warn",
+        "switch-colon-spacing": "warn",
+        "no-multi-spaces": "warn",
+        "space-in-parens": "warn",
+
+        // TypeScript rules.
+        "brace-style": "off",
+        "@typescript-eslint/brace-style": ["warn", "1tbs"],
+        indent: "off",
+        "@typescript-eslint/indent": ["warn", 4, { SwitchCase: 0 }],
+        "quotes": "off",
+        "@typescript-eslint/quotes": ["warn", "double"],
+        semi: "off",
+        "@typescript-eslint/semi": ["warn", "never"],
+
+        "object-curly-spacing": "off",
+        "@typescript-eslint/object-curly-spacing": ["warn", "always"],
+        "keyword-spacing": "off",
+        "@typescript-eslint/keyword-spacing": "warn",
+        "space-before-function-paren": "off",
+        "@typescript-eslint/space-before-function-paren": [
             "warn",
             {
                 anonymous: "always",
@@ -30,16 +49,15 @@ module.exports = {
                 asyncArrow: "always"
             }
         ],
-        "arrow-spacing": "warn",
-        "comma-spacing": "warn",
-        "keyword-spacing": "warn",
-        "object-curly-spacing": ["warn", "always"],
-        "space-infix-ops": "warn",
-        "space-unary-ops": "warn",
-        "semi-spacing": "warn",
-        "space-before-blocks": "warn",
-        "arrow-parens": "warn",
+        "comma-spacing": "off",
+        "@typescript-eslint/comma-spacing": "warn",
+        "space-before-blocks": "off",
+        "@typescript-eslint/space-before-blocks": "warn",
+        "key-spacing": "off",
+        "@typescript-eslint/key-spacing": "warn",
+        "space-infix-ops": "off",
         "@typescript-eslint/space-infix-ops": "warn",
+
         "@typescript-eslint/type-annotation-spacing": "warn",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-non-null-assertion": "off"

@@ -1,20 +1,20 @@
-const STATUS = {
-    PENDING: "pending",
-    FULFILLED: "fulfilled",
-    REJECTED: "rejected"
+const enum STATUS {
+    PENDING = "pending",
+    FULFILLED = "fulfilled",
+    REJECTED = "rejected"
 }
 
-type Resolve<T> = (value?: T | PromiseLike<T>) => void;
-type Reject = (reason?: any) => void;
-type Executor<T> = (resolve?: Resolve<T>, reject?: Reject) => void;
-type OnFulfilled<T, TResult1> = ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null;
-type OnRejected<TResult2> = ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null;
-type OnFinally = (() => void) | undefined | null;
+type Resolve<T> = (value?: T | PromiseLike<T>) => void
+type Reject = (reason?: any) => void
+type Executor<T> = (resolve?: Resolve<T>, reject?: Reject) => void
+type OnFulfilled<T, TResult1> = ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null
+type OnRejected<TResult> = ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null
+type OnFinally = (() => void) | undefined | null
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 const isFunction = (value: any): value is Function => typeof value === "function"
 
-class MyPromise<T> {
+class MyPromise<T> implements PromiseLike<T> {
     public state = STATUS.PENDING
     public result!: T
     private onFulfilledCallbacks: Resolve<T>[] = []
@@ -48,22 +48,20 @@ class MyPromise<T> {
         }
     }
 
-
-
     public then<TResult1 = T, TResult2 = never>(
-        onFulfilled?: OnFulfilled<T, TResult1>, onRejected?: OnRejected<TResult2>
+        onfulfilled?: OnFulfilled<T, TResult1>, onrejected?: OnRejected<TResult2>
     ): MyPromise<TResult1 | TResult2> {
-        onFulfilled = isFunction(onFulfilled) ? onFulfilled : (value) => {
-            return value as any
+        onfulfilled = isFunction(onfulfilled) ? onfulfilled : (value) => {
+            return value as (TResult1 | PromiseLike<TResult1>)
         }
-        onRejected = isFunction(onRejected) ? onRejected : (reason) => {
+        onrejected = isFunction(onrejected) ? onrejected : (reason) => {
             throw reason
         }
 
         const promise2 = new MyPromise<TResult1 | TResult2>((resolve, reject) => {
             const fulfilled = () => {
                 try {
-                    const x = onFulfilled?.(this.result)
+                    const x = onfulfilled?.(this.result as T)
                     resolvePromise(promise2, x!, resolve, reject)
                 } catch (err) {
                     reject?.(err)
@@ -72,7 +70,7 @@ class MyPromise<T> {
 
             const rejected = () => {
                 try {
-                    const x = onRejected?.(this.result)
+                    const x = onrejected?.(this.result)
                     resolvePromise(promise2, x!, resolve, reject)
                 } catch (err) {
                     reject?.(err)
@@ -102,28 +100,28 @@ class MyPromise<T> {
         return promise2
     }
 
-    public static resolve<T>(value?: T | PromiseLike<T>): MyPromise<T> {
+    public static resolve<T>(value?: T | PromiseLike<T>): MyPromise<Awaited<T>> {
         if (value instanceof MyPromise) {
             return value
         }
 
         return new MyPromise((resolve) => {
-            resolve?.(value)
+            resolve?.(value as Awaited<T>)
         })
     }
 
-    public static reject<T=never>(reason?: any): MyPromise<T> {
+    public static reject<T = never>(reason?: any): MyPromise<T> {
         return new MyPromise((_, reject) => {
             reject?.(reason)
         })
     }
 
-    public catch<TResult=never>(onRejected: OnRejected<TResult>): MyPromise<T | TResult> {
-        return this.then(null, onRejected)
+    public catch<TResult = never>(onrejected?: OnRejected<TResult>): MyPromise<T | TResult> {
+        return this.then(null, onrejected)
     }
 
-    public finally(onFinally?: OnFinally): MyPromise<T> {
-        const final = isFunction(onFinally) ? onFinally() : onFinally
+    public finally(onfinally?: OnFinally): MyPromise<T> {
+        const final = isFunction(onfinally) ? onfinally() : onfinally
         return this.then(
             (value) => MyPromise.resolve(final).then(() => {
                 return value
@@ -134,10 +132,10 @@ class MyPromise<T> {
         )
     }
 
-    public static all<T>(promises: T[]): MyPromise<T[]> {
+    public static all<T>(promises: Iterable<T | PromiseLike<T>>): MyPromise<Awaited<T>[]> {
         return new MyPromise((resolve, reject) => {
             if (Array.isArray(promises)) {
-                const results: T[] = []
+                const results: Awaited<T>[] = []
                 let count = 0
                 if (promises.length === 0) {
                     return resolve?.(promises)
@@ -165,12 +163,12 @@ class MyPromise<T> {
         })
     }
 
-    public static race<T>(promises: T[]): MyPromise<T extends PromiseLike<infer U> ? U : T> {
+    public static race<T>(promises: Iterable<T | PromiseLike<T>>): MyPromise<Awaited<T>> {
         return new MyPromise((resolve, reject) => {
             if (Array.isArray(promises)) {
                 if (promises.length !== 0) {
                     promises.forEach((item) => {
-                        MyPromise.resolve(item).then(resolve as any, reject)
+                        MyPromise.resolve(item).then(resolve, reject)
                     })
                 }
             } else {
@@ -181,13 +179,13 @@ class MyPromise<T> {
         })
     }
 
-    public static allSettled<T>(promises: T[]): MyPromise<PromiseSettledResult<Awaited<T>>[]> {
+    public static allSettled<T>(promises: Iterable<T | PromiseLike<T>>): MyPromise<PromiseSettledResult<Awaited<T>>[]> {
         return new MyPromise((resolve, reject) => {
             if (Array.isArray(promises)) {
-                const results: any[] = []
+                const results: PromiseSettledResult<Awaited<T>>[] = []
                 let count = 0
                 if (promises.length === 0) {
-                    return resolve?.(promises as any)
+                    return resolve?.(promises)
                 }
 
                 promises.forEach((item, index) => {
@@ -216,7 +214,7 @@ class MyPromise<T> {
         })
     }
 
-    public static any<T>(promises: (T | PromiseLike<T>)[]): MyPromise<T> {
+    public static any<T>(promises: Iterable<T | PromiseLike<T>>): MyPromise<Awaited<T>> {
         return new MyPromise((resolve, reject) => {
             if (Array.isArray(promises)) {
                 const errors: any[] = []

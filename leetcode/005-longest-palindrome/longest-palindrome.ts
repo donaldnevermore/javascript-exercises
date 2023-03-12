@@ -46,8 +46,7 @@ function longestPalindromeDP(s: string): string {
             if (i - j < 2) {
                 // i next to j or i == j
                 dp[j][i] = s[i] === s[j]
-            }
-            else {
+            } else {
                 // Compare and move i and j closer.
                 dp[j][i] = s[i] === s[j] && dp[j + 1][i - 1]
             }

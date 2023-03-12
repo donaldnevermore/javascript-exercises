@@ -296,7 +296,7 @@ const resolvePromise = (promise2, x, resolve, reject) => {
     }
 }
 
-MyPromise.deferred =  () => {
+MyPromise.deferred = () => {
     const dfd = {}
     dfd.promise = new MyPromise((resolve, reject) => {
         dfd.resolve = resolve
