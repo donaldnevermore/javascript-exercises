@@ -7,7 +7,7 @@ class Box<T> implements Functor<T> {
     value: T
 
     constructor(value: T) {
-        this.value=value
+        this.value = value
     }
 
     map<U>(func: (value: T) => U): Box<U> {

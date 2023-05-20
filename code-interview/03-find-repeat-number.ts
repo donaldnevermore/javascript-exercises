@@ -20,8 +20,7 @@ function findRepeatNumber2(nums: number[]): number {
     for (const v of nums) {
         if (arr[v]) {
             return v
-        }
-        else {
+        } else {
             arr[v] = true
         }
     }
