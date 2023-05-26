@@ -1,13 +1,12 @@
 function throttle(func, delay) {
-    let shouldWait = false
+    let enabled = true
 
     return function (...args) {
-        if (!shouldWait) {
+        if (enabled) {
+            enabled = false
             func.apply(this, args)
-            shouldWait = true
-
             setTimeout(() => {
-                shouldWait = false
+                enabled = true
             }, delay)
         }
     }
@@ -19,7 +18,7 @@ function debounce(func, delay) {
     return function (...args) {
         clearTimeout(timeout)
         timeout = setTimeout(() => {
-            timeout = null
+            timeout = undefined
             func.apply(this, args)
         }, delay)
     }
