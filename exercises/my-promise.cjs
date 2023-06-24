@@ -1,7 +1,7 @@
 const STATUS = {
   PENDING: "pending",
   FULFILLED: "fulfilled",
-  REJECTED: "rejected"
+  REJECTED: "rejected",
 };
 
 const isFunction = (value) => typeof value === "function";
@@ -66,12 +66,16 @@ class MyPromise {
   }
 
   then(onFulfilled, onRejected) {
-    onFulfilled = isFunction(onFulfilled) ? onFulfilled : (value) => {
-      return value;
-    };
-    onRejected = isFunction(onRejected) ? onRejected : (reason) => {
-      throw reason;
-    };
+    onFulfilled = isFunction(onFulfilled)
+      ? onFulfilled
+      : (value) => {
+          return value;
+        };
+    onRejected = isFunction(onRejected)
+      ? onRejected
+      : (reason) => {
+          throw reason;
+        };
 
     const promise2 = new MyPromise((resolve, reject) => {
       const fulfilled = () => {
@@ -136,11 +140,16 @@ class MyPromise {
 
   finally(onFinally) {
     const final = isFunction(onFinally) ? onFinally() : onFinally;
-    return this.then((value) => MyPromise.resolve(final).then(() => {
-      return value;
-    }), (reason) => MyPromise.resolve(final).then(() => {
-      throw reason;
-    }));
+    return this.then(
+      (value) =>
+        MyPromise.resolve(final).then(() => {
+          return value;
+        }),
+      (reason) =>
+        MyPromise.resolve(final).then(() => {
+          throw reason;
+        })
+    );
   }
 
   static all(promises) {
@@ -152,15 +161,18 @@ class MyPromise {
           return resolve?.(promises);
         }
         promises.forEach((item, index) => {
-          MyPromise.resolve(item).then((value) => {
-            count++;
-            results[index] = value;
-            if (count === promises.length) {
-              resolve?.(results);
+          MyPromise.resolve(item).then(
+            (value) => {
+              count++;
+              results[index] = value;
+              if (count === promises.length) {
+                resolve?.(results);
+              }
+            },
+            (reason) => {
+              reject?.(reason);
             }
-          }, (reason) => {
-            reject?.(reason);
-          });
+          );
         });
       } else {
         return reject?.(new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`));
@@ -191,19 +203,22 @@ class MyPromise {
           return resolve?.(promises);
         }
         promises.forEach((item, index) => {
-          MyPromise.resolve(item).then((value) => {
-            count++;
-            results[index] = { status: STATUS.FULFILLED, value };
-            if (count === promises.length) {
-              resolve?.(results);
+          MyPromise.resolve(item).then(
+            (value) => {
+              count++;
+              results[index] = { status: STATUS.FULFILLED, value };
+              if (count === promises.length) {
+                resolve?.(results);
+              }
+            },
+            (reason) => {
+              count++;
+              results[index] = { status: STATUS.REJECTED, reason };
+              if (count === promises.length) {
+                resolve?.(results);
+              }
             }
-          }, (reason) => {
-            count++;
-            results[index] = { status: STATUS.REJECTED, reason };
-            if (count === promises.length) {
-              resolve?.(results);
-            }
-          });
+          );
         });
       } else {
         return reject?.(new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`));
@@ -220,15 +235,18 @@ class MyPromise {
           return reject?.(new AggregateError(errors, "All promises were rejected"));
         }
         promises.forEach((item) => {
-          MyPromise.resolve(item).then((value) => {
-            resolve?.(value);
-          }, (reason) => {
-            count++;
-            errors.push(reason);
-            if (count === promises.length) {
-              reject?.(new AggregateError(errors, "All promises were rejected"));
+          MyPromise.resolve(item).then(
+            (value) => {
+              resolve?.(value);
+            },
+            (reason) => {
+              count++;
+              errors.push(reason);
+              if (count === promises.length) {
+                reject?.(new AggregateError(errors, "All promises were rejected"));
+              }
             }
-          });
+          );
         });
       } else {
         return reject?.(new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`));
@@ -268,19 +286,23 @@ const resolvePromise = (promise2, x, resolve, reject) => {
     if (isFunction(then)) {
       let called = false;
       try {
-        then.call(x, (value) => {
-          if (called) {
-            return;
+        then.call(
+          x,
+          (value) => {
+            if (called) {
+              return;
+            }
+            called = true;
+            resolvePromise(promise2, value, resolve, reject);
+          },
+          (reason) => {
+            if (called) {
+              return;
+            }
+            called = true;
+            reject?.(reason);
           }
-          called = true;
-          resolvePromise(promise2, value, resolve, reject);
-        }, (reason) => {
-          if (called) {
-            return;
-          }
-          called = true;
-          reject?.(reason);
-        });
+        );
       } catch (err) {
         if (called) {
           return;

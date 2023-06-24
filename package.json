@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint --fix",
     "test": "promises-aplus-tests",
-    "fmt": "prettier --write"
+    "fmt": "prettier --write ."
   },
   "repository": {
     "type": "git",

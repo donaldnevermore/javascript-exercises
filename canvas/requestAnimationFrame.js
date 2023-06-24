@@ -1,21 +1,21 @@
 let requestID = window.requestAnimationFrame(() => {
-    console.log("Repaint!")
-})
+  console.log("Repaint!");
+});
 
-window.cancelAnimationFrame(requestID)
+window.cancelAnimationFrame(requestID);
 
-let enabled = true
+let enabled = true;
 
 function expensiveOperation() {
-    console.log("Invoked at", Date.now())
+  console.log("Invoked at", Date.now());
 }
 
 window.addEventListener("scroll", () => {
-    if (enabled) {
-        enabled = false
-        window.requestAnimationFrame(expensiveOperation)
-        window.setTimeout(() => {
-            enabled = true
-        }, 50)
-    }
-})
+  if (enabled) {
+    enabled = false;
+    window.requestAnimationFrame(expensiveOperation);
+    window.setTimeout(() => {
+      enabled = true;
+    }, 50);
+  }
+});

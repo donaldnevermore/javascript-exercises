@@ -1,21 +1,21 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
-        "outDir": "out",
-        "sourceMap": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "moduleResolution": "nodenext",
-        "resolveJsonModule": true,
-        "allowJs": true,
-        "skipLibCheck": true,
-        "importHelpers": true,
-        "lib": ["dom", "dom.iterable", "esnext"],
-        "jsx": "react-jsx"
-    },
-    "exclude": ["node_modules"],
-    "include": ["**/*.ts", "**/*.tsx"]
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "outDir": "out",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "nodenext",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "importHelpers": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "react-jsx"
+  },
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts", "**/*.tsx"]
 }

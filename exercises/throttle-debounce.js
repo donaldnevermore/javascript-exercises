@@ -1,25 +1,25 @@
 function throttle(func, delay) {
-    let enabled = true
+  let enabled = true;
 
-    return function (...args) {
-        if (enabled) {
-            enabled = false
-            func.apply(this, args)
-            setTimeout(() => {
-                enabled = true
-            }, delay)
-        }
+  return function (...args) {
+    if (enabled) {
+      enabled = false;
+      func.apply(this, args);
+      setTimeout(() => {
+        enabled = true;
+      }, delay);
     }
+  };
 }
 
 function debounce(func, delay) {
-    let timeout
+  let timeout;
 
-    return function (...args) {
-        clearTimeout(timeout)
-        timeout = setTimeout(() => {
-            timeout = undefined
-            func.apply(this, args)
-        }, delay)
-    }
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      timeout = undefined;
+      func.apply(this, args);
+    }, delay);
+  };
 }

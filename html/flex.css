@@ -1,22 +1,22 @@
 p {
-    width: 150px;
-    max-width: 250px;
-    border: medium double black;
-    background-color: lightgray;
-    margin: 2px;
+  width: 150px;
+  max-width: 250px;
+  border: medium double black;
+  background-color: lightgray;
+  margin: 2px;
 }
 
 #container {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-end;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 #first {
-    flex-grow: 3;
+  flex-grow: 3;
 }
 
 #second {
-    flex-grow: 1;
+  flex-grow: 1;
 }

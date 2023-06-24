@@ -1,22 +1,17 @@
 module.exports = {
-  "env": {
-    "browser": true,
-    "es2021": true,
-    "node": true
+  env: {
+    browser: true,
+    es2021: true,
+    node: true,
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
+  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
-  "plugins": [
-    "@typescript-eslint"
-  ],
-  "rules": {
+  plugins: ["@typescript-eslint"],
+  rules: {
     "linebreak-style": ["warn", "unix"],
     "arrow-spacing": "warn",
     "space-unary-ops": "warn",
@@ -31,7 +26,7 @@ module.exports = {
     "@typescript-eslint/brace-style": ["warn", "1tbs"],
     indent: "off",
     "@typescript-eslint/indent": ["warn", 2, { SwitchCase: 1 }],
-    "quotes": "off",
+    quotes: "off",
     "@typescript-eslint/quotes": ["warn", "double"],
     semi: "off",
     "@typescript-eslint/semi": ["warn", "always"],
@@ -46,8 +41,8 @@ module.exports = {
       {
         anonymous: "always",
         named: "never",
-        asyncArrow: "always"
-      }
+        asyncArrow: "always",
+      },
     ],
     "comma-spacing": "off",
     "@typescript-eslint/comma-spacing": "warn",
@@ -60,6 +55,6 @@ module.exports = {
 
     "@typescript-eslint/type-annotation-spacing": "warn",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-non-null-assertion": "off"
-  }
+    "@typescript-eslint/no-non-null-assertion": "off",
+  },
 };

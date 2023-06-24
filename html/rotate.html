@@ -1,125 +1,123 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>document</title>
     <style type="text/css">
-        * {
-            margin: 0;
-            padding: 0;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+      }
 
-        .box {
-            width: 596px;
-            height: 596px;
-            border: 2px dotted gold;
-            margin: 100px auto;
-            border-radius: 50%;
-            position: relative;
-        }
+      .box {
+        width: 596px;
+        height: 596px;
+        border: 2px dotted gold;
+        margin: 100px auto;
+        border-radius: 50%;
+        position: relative;
+      }
 
-        .pointer {
-            width: 0;
-            height: 0;
-            position: absolute;
-            top: 300px;
-            left: 295px;
-            border-top: 250px solid black;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
+      .pointer {
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 300px;
+        left: 295px;
+        border-top: 250px solid black;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
 
-            transform-origin: 5px 0px;
-        }
+        transform-origin: 5px 0px;
+      }
 
+      p {
+        width: 2px;
+        height: 600px;
+        position: absolute;
+        top: 0;
+        left: 300px;
+        background: #fff;
+      }
 
-        p {
-            width: 2px;
-            height: 600px;
-            position: absolute;
-            top: 0;
-            left: 300px;
-            background: #fff;
-        }
+      .item1 {
+        transform: rotate(30deg);
+        background: rgb(243, 111, 4);
+      }
 
-        .item1 {
-            transform: rotate(30deg);
-            background: rgb(243, 111, 4);
-        }
+      .item2 {
+        transform: rotate(60deg);
+        background: rgb(243, 111, 4);
+      }
 
-        .item2 {
-            transform: rotate(60deg);
-            background: rgb(243, 111, 4);
-        }
+      .item3 {
+        transform: rotate(90deg);
+        background: rgb(243, 111, 4);
+      }
 
-        .item3 {
-            transform: rotate(90deg);
-            background: rgb(243, 111, 4);
-        }
+      .item4 {
+        transform: rotate(120deg);
+        background: rgb(243, 111, 4);
+      }
 
-        .item4 {
-            transform: rotate(120deg);
-            background: rgb(243, 111, 4);
-        }
+      .item5 {
+        transform: rotate(150deg);
+        background: rgb(243, 111, 4);
+      }
 
-        .item5 {
-            transform: rotate(150deg);
-            background: rgb(243, 111, 4);
-        }
+      .item6 {
+        transform: rotate(180deg);
+        background: rgb(243, 111, 4);
+      }
 
-        .item6 {
-            transform: rotate(180deg);
-            background: rgb(243, 111, 4);
-        }
-
-        .btn {
-            width: 100px;
-            height: 50px;
-            display: block;
-            margin: 20px auto;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 20px;
-            background-color:pink;
-            color:red;
-        }
+      .btn {
+        width: 100px;
+        height: 50px;
+        display: block;
+        margin: 20px auto;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 20px;
+        background-color: pink;
+        color: red;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="box">
-        <p class="item1"></p>
-        <p class="item2"></p>
-        <p class="item3"></p>
-        <p class="item4"></p>
-        <p class="item5"></p>
-        <p class="item6"></p>
-        <div class="pointer" id="pointer"></div>
+      <p class="item1"></p>
+      <p class="item2"></p>
+      <p class="item3"></p>
+      <p class="item4"></p>
+      <p class="item5"></p>
+      <p class="item6"></p>
+      <div class="pointer" id="pointer"></div>
     </div>
     <input type="button" id="btn" class="btn" value="开始" onclick="rotate()" />
-    </div>
+
     <script>
-        var rot = 10 - 0;
-        var time;
-        var isRotating = false;
-        function rotate() {
-            if (isRotating == true) {
-                window.clearInterval(time);
-                isRotating = false;
-                document.getElementById("btn").value = "开始";
-            }
-            else {
-                time = window.setInterval(begin, 50);
-                isRotating = true;
-                document.getElementById("btn").value = "暂停";
-            }
+      var rot = 10 - 0;
+      var time;
+      var isRotating = false;
+      function rotate() {
+        if (isRotating == true) {
+          window.clearInterval(time);
+          isRotating = false;
+          document.getElementById("btn").value = "开始";
+        } else {
+          time = window.setInterval(begin, 50);
+          isRotating = true;
+          document.getElementById("btn").value = "暂停";
         }
-        function begin(time) {
-            document.getElementById("pointer").style.transform = "rotatez(" + rot + "deg)";
-            rot += 50;
-        }
+      }
+      function begin(time) {
+        document.getElementById("pointer").style.transform = "rotatez(" + rot + "deg)";
+        rot += 50;
+      }
     </script>
-</body>
+  </body>
+</html>

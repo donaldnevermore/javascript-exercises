@@ -10,23 +10,22 @@
  * 重复上述两步;
  */
 function binaryInsertSort(arr) {
-    for (let i = 1; i < arr.length; i++) {
-        const key = arr[i]
-        let left = 0
-        let right = i - 1
-        while (left <= right) {
-            const middle = Number.parseInt(String((left + right) / 2))
-            if (key < arr[middle]) {
-                right = middle - 1
-            }
-            else {
-                left = middle + 1
-            }
-        }
-        for (let j = i - 1; j >= left; j--) {
-            arr[j + 1] = arr[j]
-        }
-        arr[left] = key
+  for (let i = 1; i < arr.length; i++) {
+    const key = arr[i];
+    let left = 0;
+    let right = i - 1;
+    while (left <= right) {
+      const middle = Number.parseInt(String((left + right) / 2));
+      if (key < arr[middle]) {
+        right = middle - 1;
+      } else {
+        left = middle + 1;
+      }
     }
-    return arr
+    for (let j = i - 1; j >= left; j--) {
+      arr[j + 1] = arr[j];
+    }
+    arr[left] = key;
+  }
+  return arr;
 }
