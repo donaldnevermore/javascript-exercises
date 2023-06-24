@@ -1,12 +1,12 @@
 const enum A {
-    M,
-    N
+  M,
+  N,
 }
 const enum B {
-    M,
-    N
+  M,
+  N,
 }
 
 // @ts-expect-error not structural typing
-const a: A = B.M
-console.log(a)
+const a: A = B.M;
+console.log(a);

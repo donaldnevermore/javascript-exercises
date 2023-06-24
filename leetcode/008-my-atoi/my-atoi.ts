@@ -10,10 +10,10 @@ function myAtoi(s: string): number {
 
 class Automaton {
   private table: { [index: string]: string[] } = {
-    "start": ["start", "signed", "in_number", "end"],
-    "signed": ["end", "end", "in_number", "end"],
-    "in_number": ["end", "end", "in_number", "end"],
-    "end": ["end", "end", "end", "end"],
+    start: ["start", "signed", "in_number", "end"],
+    signed: ["end", "end", "in_number", "end"],
+    in_number: ["end", "end", "in_number", "end"],
+    end: ["end", "end", "end", "end"],
   };
   private state = "start";
   public sign = 1;

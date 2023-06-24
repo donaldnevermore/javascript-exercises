@@ -18,7 +18,13 @@ function letterCombinations(digits: string): string[] {
   return result;
 }
 
-function backtrack(digits: string, map: { [key: string]: string }, index: number, combination: string[], result: string[]) {
+function backtrack(
+  digits: string,
+  map: { [key: string]: string },
+  index: number,
+  combination: string[],
+  result: string[]
+) {
   if (index === digits.length) {
     result.push(combination.join(""));
   } else {

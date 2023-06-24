@@ -1,7 +1,7 @@
 const enum STATUS {
   PENDING = "pending",
   FULFILLED = "fulfilled",
-  REJECTED = "rejected"
+  REJECTED = "rejected",
 }
 
 type Resolve<T> = (value?: T | PromiseLike<T>) => void;
@@ -49,14 +49,19 @@ class MyPromise<T> implements PromiseLike<T> {
   }
 
   public then<TResult1 = T, TResult2 = never>(
-    onfulfilled?: OnFulfilled<T, TResult1>, onrejected?: OnRejected<TResult2>
+    onfulfilled?: OnFulfilled<T, TResult1>,
+    onrejected?: OnRejected<TResult2>
   ): MyPromise<TResult1 | TResult2> {
-    onfulfilled = isFunction(onfulfilled) ? onfulfilled : (value) => {
-      return value as (TResult1 | PromiseLike<TResult1>);
-    };
-    onrejected = isFunction(onrejected) ? onrejected : (reason) => {
-      throw reason;
-    };
+    onfulfilled = isFunction(onfulfilled)
+      ? onfulfilled
+      : (value) => {
+          return value as TResult1 | PromiseLike<TResult1>;
+        };
+    onrejected = isFunction(onrejected)
+      ? onrejected
+      : (reason) => {
+          throw reason;
+        };
 
     const promise2 = new MyPromise<TResult1 | TResult2>((resolve, reject) => {
       const fulfilled = () => {
@@ -123,12 +128,14 @@ class MyPromise<T> implements PromiseLike<T> {
   public finally(onfinally?: OnFinally): MyPromise<T> {
     const final = isFunction(onfinally) ? onfinally() : onfinally;
     return this.then(
-      (value) => MyPromise.resolve(final).then(() => {
-        return value;
-      }),
-      (reason) => MyPromise.resolve(final).then(() => {
-        throw reason;
-      })
+      (value) =>
+        MyPromise.resolve(final).then(() => {
+          return value;
+        }),
+      (reason) =>
+        MyPromise.resolve(final).then(() => {
+          throw reason;
+        })
     );
   }
 
@@ -156,9 +163,7 @@ class MyPromise<T> implements PromiseLike<T> {
           );
         });
       } else {
-        return reject?.(
-          new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`)
-        );
+        return reject?.(new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`));
       }
     });
   }
@@ -172,9 +177,7 @@ class MyPromise<T> implements PromiseLike<T> {
           });
         }
       } else {
-        return reject?.(
-          new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`)
-        );
+        return reject?.(new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`));
       }
     });
   }
@@ -207,9 +210,7 @@ class MyPromise<T> implements PromiseLike<T> {
           );
         });
       } else {
-        return reject?.(
-          new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`)
-        );
+        return reject?.(new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`));
       }
     });
   }
@@ -238,17 +239,13 @@ class MyPromise<T> implements PromiseLike<T> {
           );
         });
       } else {
-        return reject?.(
-          new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`)
-        );
+        return reject?.(new TypeError(`${promises} is not iterable (cannot read property Symbol(Symbol.iterator)`));
       }
     });
   }
 }
 
-const resolvePromise = <T>(
-  promise2: MyPromise<T>, x: T | PromiseLike<T>, resolve?: Resolve<T>, reject?: Reject
-) => {
+const resolvePromise = <T>(promise2: MyPromise<T>, x: T | PromiseLike<T>, resolve?: Resolve<T>, reject?: Reject) => {
   if (promise2 === x) {
     return reject?.(new TypeError("Chaining cycle detected."));
   }
@@ -280,20 +277,23 @@ const resolvePromise = <T>(
     if (isFunction(then)) {
       let called = false;
       try {
-        then.call(x, (value) => {
-          if (called) {
-            return;
+        then.call(
+          x,
+          (value) => {
+            if (called) {
+              return;
+            }
+            called = true;
+            resolvePromise(promise2, value, resolve, reject);
+          },
+          (reason) => {
+            if (called) {
+              return;
+            }
+            called = true;
+            reject?.(reason);
           }
-          called = true;
-          resolvePromise(promise2, value, resolve, reject);
-        },
-        (reason) => {
-          if (called) {
-            return;
-          }
-          called = true;
-          reject?.(reason);
-        });
+        );
       } catch (err) {
         if (called) {
           return;
