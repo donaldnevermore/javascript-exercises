@@ -32,5 +32,5 @@ console.log(
       return value + "同学";
     }
     return value;
-  })
+  }),
 );

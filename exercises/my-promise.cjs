@@ -148,7 +148,7 @@ class MyPromise {
       (reason) =>
         MyPromise.resolve(final).then(() => {
           throw reason;
-        })
+        }),
     );
   }
 
@@ -171,7 +171,7 @@ class MyPromise {
             },
             (reason) => {
               reject?.(reason);
-            }
+            },
           );
         });
       } else {
@@ -217,7 +217,7 @@ class MyPromise {
               if (count === promises.length) {
                 resolve?.(results);
               }
-            }
+            },
           );
         });
       } else {
@@ -245,7 +245,7 @@ class MyPromise {
               if (count === promises.length) {
                 reject?.(new AggregateError(errors, "All promises were rejected"));
               }
-            }
+            },
           );
         });
       } else {
@@ -301,7 +301,7 @@ const resolvePromise = (promise2, x, resolve, reject) => {
             }
             called = true;
             reject?.(reason);
-          }
+          },
         );
       } catch (err) {
         if (called) {

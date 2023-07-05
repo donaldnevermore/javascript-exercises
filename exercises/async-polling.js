@@ -28,7 +28,7 @@ class AsyncPolling {
             },
             (err) => {
               reject(err);
-            }
+            },
           )
           .catch((err) => {
             console.log(err);

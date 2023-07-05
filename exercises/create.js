@@ -31,6 +31,6 @@ const obj3 = myCreate(
       value: "bb",
       enumerable: true,
     },
-  }
+  },
 );
 console.log(obj3); // {b: 'bb'}

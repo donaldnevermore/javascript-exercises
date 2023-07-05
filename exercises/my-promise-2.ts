@@ -50,7 +50,7 @@ class MyPromise<T> implements PromiseLike<T> {
 
   public then<TResult1 = T, TResult2 = never>(
     onfulfilled?: OnFulfilled<T, TResult1>,
-    onrejected?: OnRejected<TResult2>
+    onrejected?: OnRejected<TResult2>,
   ): MyPromise<TResult1 | TResult2> {
     onfulfilled = isFunction(onfulfilled)
       ? onfulfilled
@@ -135,7 +135,7 @@ class MyPromise<T> implements PromiseLike<T> {
       (reason) =>
         MyPromise.resolve(final).then(() => {
           throw reason;
-        })
+        }),
     );
   }
 
@@ -159,7 +159,7 @@ class MyPromise<T> implements PromiseLike<T> {
             },
             (reason) => {
               reject?.(reason);
-            }
+            },
           );
         });
       } else {
@@ -206,7 +206,7 @@ class MyPromise<T> implements PromiseLike<T> {
               if (count === promises.length) {
                 resolve?.(results);
               }
-            }
+            },
           );
         });
       } else {
@@ -235,7 +235,7 @@ class MyPromise<T> implements PromiseLike<T> {
               if (count === promises.length) {
                 reject?.(new AggregateError(errors, "All promises were rejected"));
               }
-            }
+            },
           );
         });
       } else {
@@ -292,7 +292,7 @@ const resolvePromise = <T>(promise2: MyPromise<T>, x: T | PromiseLike<T>, resolv
             }
             called = true;
             reject?.(reason);
-          }
+          },
         );
       } catch (err) {
         if (called) {

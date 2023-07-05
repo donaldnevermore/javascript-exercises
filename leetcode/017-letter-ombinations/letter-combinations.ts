@@ -23,7 +23,7 @@ function backtrack(
   map: { [key: string]: string },
   index: number,
   combination: string[],
-  result: string[]
+  result: string[],
 ) {
   if (index === digits.length) {
     result.push(combination.join(""));
