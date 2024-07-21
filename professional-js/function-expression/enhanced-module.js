@@ -3,40 +3,40 @@ class CustomType {}
 class BaseComponent {}
 
 let singleton = (function () {
-  let privateVariable = 10;
+    let privateVariable = 10;
 
-  function privateFunction() {
-    return false;
-  }
+    function privateFunction() {
+        return false;
+    }
 
-  let object = new CustomType();
+    let object = new CustomType();
 
-  object.publicProperty = true;
+    object.publicProperty = true;
 
-  object.publicMethod = function () {
-    privateVariable++;
-    return privateFunction();
-  };
+    object.publicMethod = function () {
+        privateVariable++;
+        return privateFunction();
+    };
 
-  return object;
+    return object;
 })();
 
 let application = (function () {
-  let components = [];
+    let components = [];
 
-  components.push(new BaseComponent());
+    components.push(new BaseComponent());
 
-  let app = new BaseComponent();
+    let app = new BaseComponent();
 
-  app.getComponentCount = function () {
-    return components.length;
-  };
+    app.getComponentCount = function () {
+        return components.length;
+    };
 
-  app.registerComponent = function (component) {
-    if (typeof component === "object") {
-      components.push(component);
-    }
-  };
+    app.registerComponent = function (component) {
+        if (typeof component === "object") {
+            components.push(component);
+        }
+    };
 
-  return app;
+    return app;
 })();

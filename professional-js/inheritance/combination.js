@@ -1,25 +1,25 @@
 // A common implementation.
 
 function SuperType(name) {
-  this.name = name;
-  this.colors = ["red", "blue", "green"];
+    this.name = name;
+    this.colors = ["red", "blue", "green"];
 }
 
 SuperType.prototype.sayName = function () {
-  console.log(this.name);
+    console.log(this.name);
 };
 
 function SubType(name, age) {
-  SuperType.call(this, name); // 2nd time calling SuperType()
+    SuperType.call(this, name); // 2nd time calling SuperType()
 
-  this.age = age;
+    this.age = age;
 }
 
 SubType.prototype = new SuperType(); // 1st time calling SuperType()
 SubType.prototype.constructor = SubType;
 
 SubType.prototype.sayAge = function () {
-  console.log(this.age);
+    console.log(this.age);
 };
 
 const instance1 = new SubType("Nicholas", 29);

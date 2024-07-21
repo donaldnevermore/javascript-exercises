@@ -1,22 +1,22 @@
 function convert(s: string, numRows: number): string {
-  if (numRows === 1 || numRows >= s.length) {
-    return s;
-  }
-
-  const cycle = numRows * 2 - 2;
-  const arr: string[] = [];
-  for (let i = 0; i < numRows; i++) {
-    for (let j = 0; j < s.length - i; j += cycle) {
-      arr.push(s[j + i]);
-
-      // Omit the first and the last row.
-      if (0 < i && i < numRows - 1 && j + cycle - i < s.length) {
-        arr.push(s[j + cycle - i]);
-      }
+    if (numRows === 1 || numRows >= s.length) {
+        return s;
     }
-  }
 
-  return arr.join("");
+    const cycle = numRows * 2 - 2;
+    const arr: string[] = [];
+    for (let i = 0; i < numRows; i++) {
+        for (let j = 0; j < s.length - i; j += cycle) {
+            arr.push(s[j + i]);
+
+            // Omit the first and the last row.
+            if (0 < i && i < numRows - 1 && j + cycle - i < s.length) {
+                arr.push(s[j + cycle - i]);
+            }
+        }
+    }
+
+    return arr.join("");
 }
 /*
 0             0+t                    0+2t                     0+3t

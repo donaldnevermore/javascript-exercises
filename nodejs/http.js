@@ -3,9 +3,9 @@ import url from "url";
 import path from "path";
 
 const server = http.createServer((req, res) => {
-  console.log(req.method + ":" + req.url);
-  res.writeHead(200, { "Content-Type": "text/html" });
-  res.end("<h1>Hello world!</h1>");
+    console.log(req.method + ":" + req.url);
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end("<h1>Hello world!</h1>");
 });
 
 server.listen(8080);

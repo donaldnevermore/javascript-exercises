@@ -1,10 +1,10 @@
 function bar() {
-  console.log(myName);
+    console.log(myName);
 }
 
 function foo() {
-  var myName = "腾讯1";
-  bar();
+    var myName = "腾讯1";
+    bar();
 }
 
 foo(); // 腾讯2

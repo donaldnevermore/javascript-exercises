@@ -1,29 +1,29 @@
 function findLongestWord(s: string, dictionary: string[]): string {
-  let longest = "";
+    let longest = "";
 
-  for (const word of dictionary) {
-    if (longest.length > word.length || (longest.length === word.length && longest < word)) {
-      continue;
+    for (const word of dictionary) {
+        if (longest.length > word.length || (longest.length === word.length && longest < word)) {
+            continue;
+        }
+
+        if (isSubstring(s, word)) {
+            longest = word;
+        }
     }
 
-    if (isSubstring(s, word)) {
-      longest = word;
-    }
-  }
-
-  return longest;
+    return longest;
 }
 
 function isSubstring(s: string, word: string): boolean {
-  let i = 0;
-  let j = 0;
+    let i = 0;
+    let j = 0;
 
-  while (i < s.length && j < word.length) {
-    if (s[i] === word[j]) {
-      j++;
+    while (i < s.length && j < word.length) {
+        if (s[i] === word[j]) {
+            j++;
+        }
+        i++;
     }
-    i++;
-  }
 
-  return j === word.length;
+    return j === word.length;
 }

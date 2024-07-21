@@ -5,7 +5,7 @@ Person.prototype.name = "Nicholas";
 Person.prototype.age = 29;
 Person.prototype.job = "Software Engineer";
 Person.prototype.sayName = function () {
-  console.log(this.name);
+    console.log(this.name);
 };
 
 let person1 = new Person();
@@ -59,7 +59,7 @@ console.log(person1.hasOwnProperty("name")); // false
 console.log("name" in person1); // true
 
 function hasPrototypeProperty(object, name) {
-  return !object.hasOwnProperty(name) && name in object;
+    return !object.hasOwnProperty(name) && name in object;
 }
 
 let person3 = new Person();
@@ -68,15 +68,15 @@ person3.name = "Greg";
 console.log(hasPrototypeProperty(person3, "name")); // false
 
 let o = {
-  toString: function () {
-    return "My Object";
-  },
+    toString: function () {
+        return "My Object";
+    },
 };
 
 for (let prop in o) {
-  if (prop === "toString") {
-    console.log("Found toString");
-  }
+    if (prop === "toString") {
+        console.log("Found toString");
+    }
 }
 
 let keys = Object.keys(Person.prototype);

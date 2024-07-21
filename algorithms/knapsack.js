@@ -1,50 +1,50 @@
 function maxValue(weights, values, index, weightAvailable) {
-  if (index === 0) {
-    if (weights[index] <= weightAvailable) {
-      return values[index];
-    } else {
-      return 0;
+    if (index === 0) {
+        if (weights[index] <= weightAvailable) {
+            return values[index];
+        } else {
+            return 0;
+        }
     }
-  }
 
-  const withoutIndex = maxValue(weights, values, index - 1, weightAvailable);
+    const withoutIndex = maxValue(weights, values, index - 1, weightAvailable);
 
-  if (weights[index] > weightAvailable) {
-    return withoutIndex;
-  } else {
-    const withIndex = values[index] + maxValue(weights, values, index - 1, weightAvailable - weights[index]);
-    return Math.max(withIndex, withoutIndex);
-  }
+    if (weights[index] > weightAvailable) {
+        return withoutIndex;
+    } else {
+        const withIndex = values[index] + maxValue(weights, values, index - 1, weightAvailable - weights[index]);
+        return Math.max(withIndex, withoutIndex);
+    }
 }
 
 function fastMaxValue(weights, values, index, weightAvailable, memory) {
-  const key = `(${index},${weightAvailable})`;
-  if (memory[key] != null) {
-    return memory[key];
-  }
-
-  if (index === 0) {
-    if (weights[index] <= weightAvailable) {
-      memory[key] = values[index];
-      return values[index];
-    } else {
-      memory[key] = 0;
-      return 0;
+    const key = `(${index},${weightAvailable})`;
+    if (memory[key] != null) {
+        return memory[key];
     }
-  }
 
-  const withoutIndex = fastMaxValue(weights, values, index - 1, weightAvailable, memory);
+    if (index === 0) {
+        if (weights[index] <= weightAvailable) {
+            memory[key] = values[index];
+            return values[index];
+        } else {
+            memory[key] = 0;
+            return 0;
+        }
+    }
 
-  if (weights[index] > weightAvailable) {
-    memory[key] = withoutIndex;
-    return withoutIndex;
-  } else {
-    const withIndex =
-      values[index] + fastMaxValue(weights, values, index - 1, weightAvailable - weights[index], memory);
-    const result = Math.max(withIndex, withoutIndex);
-    memory[key] = result;
-    return result;
-  }
+    const withoutIndex = fastMaxValue(weights, values, index - 1, weightAvailable, memory);
+
+    if (weights[index] > weightAvailable) {
+        memory[key] = withoutIndex;
+        return withoutIndex;
+    } else {
+        const withIndex =
+            values[index] + fastMaxValue(weights, values, index - 1, weightAvailable - weights[index], memory);
+        const result = Math.max(withIndex, withoutIndex);
+        memory[key] = result;
+        return result;
+    }
 }
 
 const weightAvailable = 5;

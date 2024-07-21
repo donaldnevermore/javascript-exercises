@@ -1,11 +1,11 @@
 function Person(name, age, job) {
-  let o = {};
+    let o = {};
 
-  o.sayName = function () {
-    console.log(name);
-  };
+    o.sayName = function () {
+        console.log(name);
+    };
 
-  return o;
+    return o;
 }
 
 let friend = Person("Nicholas", 29, "Software Engineer");

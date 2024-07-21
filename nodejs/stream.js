@@ -3,16 +3,16 @@ import fs from "fs";
 const rs = fs.createReadStream("sample.txt", "utf-8");
 
 rs.on("data", (chunk) => {
-  console.log("DATA:");
-  console.log(chunk);
+    console.log("DATA:");
+    console.log(chunk);
 });
 
 rs.on("end", () => {
-  console.log("END");
+    console.log("END");
 });
 
 rs.on("error", (err) => {
-  console.log("ERROR:" + err);
+    console.log("ERROR:" + err);
 });
 
 const ws1 = fs.createWriteStream("output1.txt", "utf-8");

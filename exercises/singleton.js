@@ -1,20 +1,20 @@
 class Singleton {
-  instance = null;
+    instance = null;
 
-  constructor(name) {
-    this.name = name;
-  }
-
-  getName() {
-    console.log(this.name);
-  }
-
-  static getInstance(name) {
-    if (!this.instance) {
-      this.instance = new Singleton(name);
+    constructor(name) {
+        this.name = name;
     }
-    return this.instance;
-  }
+
+    getName() {
+        console.log(this.name);
+    }
+
+    static getInstance(name) {
+        if (!this.instance) {
+            this.instance = new Singleton(name);
+        }
+        return this.instance;
+    }
 }
 
 const a = Singleton.getInstance("sven1");

@@ -2,12 +2,12 @@
 function Person() {}
 
 Person.prototype = {
-  name: "Nicholas",
-  age: 29,
-  job: "Software Engineer",
-  sayName: function () {
-    console.log(this.name);
-  },
+    name: "Nicholas",
+    age: 29,
+    job: "Software Engineer",
+    sayName: function () {
+        console.log(this.name);
+    },
 };
 
 let friend = new Person();
@@ -20,22 +20,22 @@ console.log(friend.constructor === Object); // true
 function Person2() {}
 
 Person2.prototype = {
-  constructor: Person,
-  name: "Nicholas",
-  age: 29,
-  job: "Software Engineer",
-  sayName: function () {
-    console.log(this.name);
-  },
+    constructor: Person,
+    name: "Nicholas",
+    age: 29,
+    job: "Software Engineer",
+    sayName: function () {
+        console.log(this.name);
+    },
 };
 
 Object.defineProperty(Person.prototype, "constructor", {
-  enumerable: false,
-  value: Person,
+    enumerable: false,
+    value: Person,
 });
 
 Person.prototype.sayHi = function () {
-  console.log("hi");
+    console.log("hi");
 };
 
 let friend2 = new Person();
@@ -46,13 +46,13 @@ function Person3() {}
 let friend3 = new Person3();
 
 Person3.prototype = {
-  constructor: Person3,
-  name: "Nicholas",
-  age: 29,
-  job: "Software Engineer",
-  sayName: function () {
-    console.log(this.name);
-  },
+    constructor: Person3,
+    name: "Nicholas",
+    age: 29,
+    job: "Software Engineer",
+    sayName: function () {
+        console.log(this.name);
+    },
 };
 
 // Throws error
@@ -62,7 +62,7 @@ console.log(typeof Array.prototype.sort); // "function"
 console.log(typeof String.prototype.substring); // "function"
 
 String.prototype.startsWith = function (text) {
-  return this.indexOf(text) === 0;
+    return this.indexOf(text) === 0;
 };
 
 let msg = "Hello world!";
@@ -71,15 +71,15 @@ console.log(msg.startsWith("Hello")); // true
 function Person4() {}
 
 Person4.prototype = {
-  constructor: Person4,
-  name: "Nicholas",
-  age: 29,
-  job: "Software Engineer",
-  friends: ["Shelby", "Court"],
+    constructor: Person4,
+    name: "Nicholas",
+    age: 29,
+    job: "Software Engineer",
+    friends: ["Shelby", "Court"],
 
-  sayName: function () {
-    console.log(this.name);
-  },
+    sayName: function () {
+        console.log(this.name);
+    },
 };
 
 let person1 = new Person4();

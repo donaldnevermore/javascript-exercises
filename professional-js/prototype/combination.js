@@ -1,17 +1,17 @@
 // A common implementation.
 
 function Person(name, age, job) {
-  this.name = name;
-  this.age = age;
-  this.job = job;
-  this.friends = ["Shelby", "Court"];
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.friends = ["Shelby", "Court"];
 }
 
 Person.prototype = {
-  constructor: Person,
-  sayName: function () {
-    console.log(this.name);
-  },
+    constructor: Person,
+    sayName: function () {
+        console.log(this.name);
+    },
 };
 
 // A better implementation
